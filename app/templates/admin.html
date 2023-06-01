@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin | Editor Melinda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% set counter = messages|length %}
+                {% for category, message in messages|reverse %}
+                    {% set index = counter - loop.index %}
+                    <div class="flash-message flash-{{ category }}">{{ message }} {% if messages|length > 1 %}({{ index }}){% endif %}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

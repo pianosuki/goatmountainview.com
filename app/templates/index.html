@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Editor Melinda - Copyediting and Nigerian Dwarf Goats in Washington{% endblock %}
+{% block stylesheets %}
+    {{ super() }}
+    <style>
+        #copyediting {
+            filter: drop-shadow(0px 0px 2px #ddd);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="content-header">
+        <div class="content-header-container">
+            <div class="content-header-item">
+                <h2>Freelance Copyediting Services</h2>
+                <p>I endeavor to let your words shine. I will ensure clarity, correctness, coherency, and consistency in your text.</p>
+                <p>I realize your time is very important. You can depend on me to be punctual, so you meet your deadline. </p>
+                <a href="/portfolio" class="content-header-button">PORTFOLIO</a>
+            </div>
+            <div class="content-header-item">
+                <img src="{{ url_for('static', filename='images/style_guides.jpg') }}">
+            </div>
+        </div>
+    </div>
+{% endblock %}

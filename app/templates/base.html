@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+    {% endblock %}
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% set counter = messages|length %}
+                {% for category, message in messages|reverse %}
+                    {% set index = counter - loop.index %}
+                    <div class="flash-message flash-{{ category }}">{{ message }} {% if messages|length > 1 %}({{ index }}){% endif %}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <header class="header">
+        <div class="logo">
+            <h1>Editor Melinda</h1>
+        </div>
+        <nav class="nav-bar">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="/" id="copyediting">COPYEDITING</a>
+                    <span class="nav-underline"></span>
+                    <ul class="nav-drop-down-list">
+                        <li class="nav-drop-down-item">
+                            <a href="/portfolio">Portfolio</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/goats" id="goats">NIGERIAN DWARF GOATS</a>
+                    <span class="nav-underline"></span>
+                    <ul class="nav-drop-down-list">
+                        <li class="nav-drop-down-item">
+                            <a href="/goats/does">Does</a>
+                        </li>
+                        <li class="nav-drop-down-item">
+                            <a href="/goats/adoptions">Adoptions</a>
+                        </li>
+                        <li class="nav-drop-down-item">
+                            <a href="/goats/foundation">Foundation Goats</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/soap" id="soap">SOAP</a>
+                    <span class="nav-underline"></span>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact" id="contact">CONTACT</a>
+                    <span class="nav-underline"></span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>Copyright © 2023 Melinda Wedgewood</p>
+    </footer>
+</body>
+</html>
