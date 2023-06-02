@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Admin | Editor Melinda</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
 </head>
 <body>
@@ -17,5 +17,24 @@
             </div>
         {% endif %}
     {% endwith %}
+    <div class="admin-panel">
+        <h2>Table List</h2>
+        <ul class="table-list">
+            {% for table_name in tables %}
+                <li class="table-item">
+                    <form method="POST" action="{{ url_for('admin') }}">
+                        <label for="table-name">{{ table_name|title }}</label>
+                        <input type="hidden" name="action" value="edit">
+                        <input type="hidden" id="table-name" name="table_name" value="{{ table_name }}">
+                        <button type="submit" class="edit-btn">Edit</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        <form method="POST" action="{{ url_for('admin') }}">
+            <input type="hidden" name="action" value="cancel">
+            <button type="submit" class="cancel-btn">Back</button>
+        </form>
+    </div>
 </body>
 </html>

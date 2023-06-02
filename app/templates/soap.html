@@ -11,4 +11,40 @@
 {% endblock %}
 
 {% block content %}
+    <div class="content-header">
+        <div class="content-header-container">
+            <div class="content-header-item">
+                <img src="{{ url_for('static', filename='images/soap.jpg') }}">
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="content-section">
+            <p>
+                Welcome to <b>Edit Soap</b>. I make small batches of high-quality soap using simple ingredients: goat milk, tallow,
+                coconut oil, and olive oil. To create variety, I mix things up with essential oils, clays, botanicals,
+                phthalate-free fragrances, and natural colorants (mineral oxides and mica). What makes Edit Soap special is
+                the use of 9% butterfat milk from our Nigerian Dwarf dairy goats. Goat milk contains many compounds that are
+                so good for your skin, such as alpha hydroxyl acids, essential fatty acids, triglycerides, vitamins A, B, C,
+                D, and E, antioxidants, and selenium.
+            </p>
+            <p>
+                Edit Soap can be found at <a href="https://www.facebook.com/AWWBookshop/"><b>Away with Words</b></a> bookshop on
+                Front Street in Poulsbo. I also sell my soap through this website for $6/bar. (The names of the soaps are
+                based on the fragrance used; check <a href="http://brambleberry.com/">BrambleBerry</a> for descriptions of
+                the scents.) Please email me at <a href="mailto:editormelinda@outlook.com">editormelinda@outlook.com</a> to
+                order. You can pick up at the farm, or I can deliver via my cargo bike for $5 within the City of Poulsbo.
+            </p>
+        </div>
+        <span class="content-section-spacer"></span>
+        <div class="content-section content-grid">
+            {% for soap in soaps %}
+                <div class="content-grid-item">
+                    <h3>{{ soap.name }}</h3>
+                    <p>{{ soap.ingredients }}</p>
+                    <p>{{ soap.weight }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

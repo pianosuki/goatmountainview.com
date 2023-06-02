@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin | Editor Melinda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% set counter = messages|length %}
+                {% for category, message in messages|reverse %}
+                    {% set index = counter - loop.index %}
+                    <div class="flash-message flash-{{ category }}">{{ message }} {% if messages|length > 1 %}({{ index }}){% endif %}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="admin-panel">
+        <h2>Editing table: <b>{{ table_name|title }}</b></h2>
+        <ul class="table-columns">
+            {% for column in table["table_columns"] %}
+                <li>{{ column|title }}</li>
+            {% endfor %}
+        </ul>
+        <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}" enctype="multipart/form-data" class="input-form">
+            {% for column in table["table_columns"] %}
+                {% if column == "id" %}
+                    {% if table["table_rows"]|length > 0%}
+                        <p>{{ row_id }}</p>
+                    {% else %}
+                        <p>1</p>
+                    {% endif %}
+                {% elif column == "image" %}
+                    <label for="file-upload" class="custom-file-upload">Choose File</label>
+                    <input id="file-upload" type="file" name="image" accept=".jpg, .jpeg, .png">
+                {% else %}
+                    <input type="text" name="{{ column }}" placeholder="{{ column }}" value="{{ table['table_rows'][row_id - 1][loop.index - 1] if column != 'password' else '' }}" required>
+                {% endif %}
+            {% endfor %}
+            <input type="hidden" name="action" value="edit">
+            <button type="submit" class="edit-btn">Edit</button>
+        </form>
+        <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}">
+            <input type="hidden" name="action" value="cancel">
+            <button type="submit" class="cancel-btn">Cancel</button>
+        </form>
+    </div>
+</body>
+</html>

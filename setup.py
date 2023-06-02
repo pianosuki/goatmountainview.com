@@ -6,10 +6,10 @@ from app.models import User
 
 def setup():
     with app.app_context():
+        os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
         db_file = "instance/" + app.config["SQLALCHEMY_DATABASE_URI"].split("///")[1]
         if not os.path.exists(db_file):
             db.create_all()
-        else:
             load_dotenv()
             username = os.getenv("USERNAME")
             password = os.getenv("PASSWORD")
@@ -20,3 +20,5 @@ def setup():
                 user = User(username=username, password=hashed_password)
                 db.session.add(user)
                 db.session.commit()
+        else:
+            db.create_all()
