@@ -6,7 +6,7 @@ Copyediting and Nigerian Dwarf Goats in Washington.
 
 ## Prerequisites
 
-- `requirements.txt`
+- Python 3.11
 
 ## Installation
 
