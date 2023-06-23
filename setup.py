@@ -1,12 +1,19 @@
-from dotenv import load_dotenv
 import os
+import json
+from collections import OrderedDict
+from dotenv import load_dotenv
 from app import app, db, bcrypt
-from app.models import User
+from app.models import *
+import app.crud as crud
 
 
 def setup():
     with app.app_context():
-        os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+        os.makedirs(app.config["STATIC_FOLDER"] + "/images/books", exist_ok=True)
+        os.makedirs(app.config["UPLOAD_FOLDER"] + "/soap", exist_ok=True)
+        os.makedirs(app.config["UPLOAD_FOLDER"] + "/does", exist_ok=True)
+        os.makedirs(app.config["UPLOAD_FOLDER"] + "/adoptions", exist_ok=True)
+        os.makedirs(app.config["UPLOAD_FOLDER"] + "/foundation", exist_ok=True)
         db_file = "instance/" + app.config["SQLALCHEMY_DATABASE_URI"].split("///")[1]
         if not os.path.exists(db_file):
             db.create_all()
@@ -20,5 +27,10 @@ def setup():
                 user = User(username=username, password=hashed_password)
                 db.session.add(user)
                 db.session.commit()
+            with open("app/defaults.json", "r") as tables:
+                table_data = json.load(tables, object_pairs_hook=OrderedDict)
+                for key, row_data in table_data.items():
+                    for column_data in row_data:
+                        crud.add_table_row(key, column_data)
         else:
             db.create_all()

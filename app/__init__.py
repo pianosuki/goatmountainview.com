@@ -9,8 +9,10 @@ db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
+from app.jinja import extend_env
+extend_env(app.jinja_env)
+
 from app.login import login_manager
 login_manager.init_app(app)
 
-from app.models import User
 from app import routes

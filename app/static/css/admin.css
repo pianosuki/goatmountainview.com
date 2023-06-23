@@ -4,7 +4,7 @@
 }
 
 html, body {
-    height: 100%;
+    min-height: 100vh;
 }
 
 body {
@@ -21,6 +21,7 @@ body {
     background-color: #eee;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin: 40px;
 }
 
 .admin-panel > * {
@@ -143,24 +144,24 @@ tbody tr:hover {
   gap: 10px;
 }
 
-.input-form > p {
+.input-form p {
     padding: 5px;
 }
 
-.input-form > input[type="text"] {
+.input-form input[type="text"] {
   padding: 5px 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   font-size: 14px;
-  width: 100px;
+  min-width: 100px;
 }
 
-.input-form > input[type="text"]:focus {
+.input-form input[type="text"]:focus {
   outline: none;
   border-color: #007bff;
 }
 
-.input-form > input[type="file"] {
+.input-form input[type="file"] {
   display: none;
 }
 
@@ -169,19 +170,11 @@ tbody tr:hover {
   padding: 6px 12px;
   cursor: pointer;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 5px;
   background-color: #f1f1f1;
   color: #555;
 }
 
 .custom-file-upload:hover {
   background-color: #e0e0e0;
-}
-
-.table-columns {
-    list-style: none;
-    display: flex;
-    padding-left: 0;
-    width: 100%;
-    justify-content: space-around;
 }

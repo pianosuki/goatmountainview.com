@@ -11,4 +11,76 @@
 {% endblock %}
 
 {% block content %}
+    {% if slideshow_images %}
+        <div class="content-header">
+            <div class="slideshow-container">
+                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                </ul>
+                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    <div class="content-body">
+        <div class="content-section">
+            <h3 class="h3-title">Nigerian Dwarf Goats for Adoption</h3>
+            <div class="about-container">
+                <h4>Last updated May 2023</h4>
+                <p>
+                    <b>Every goat in our herd has consistently tested negative for CAE, CL, and Johne's since we began goat
+                    herding in 2004.</b> Our herd is closed for biosecurity. That means no new goats will be brought into
+                    our herd, including no returns on goats we have adopted out.
+                </p>
+                <p>
+                    Kids must be picked up within two weeks of weaning. I reserve the right to ask for proof of a relationship
+                    between the new owner and a vet to ensure proper healthcare will be maintained after kids leave our farm.
+                    I also reserve the right to register kids with ADGA to ensure the registration process is completed.
+                </p>
+                <p>
+                    All goats are ensured to be healthy before they leave Goat Mountain View Farm. No guarantees of health,
+                    pregnancy, fertility, nor milk production are given past the date of adoption. We understand that once
+                    the animal leaves our farm, we cannot control the environment, nutrition, nor care of that animal,
+                    and therefore cannot take further responsibility for it.
+                </p>
+                <p>
+                    All goats receive regular de-worming with Valbazen or Ivermectin, annual CDT vaccinations, and
+                    supplementation with CHS 16-8 mineral salt, copper, and Bo-Se. We also supplement with Kop-Sel by
+                    <a href="http://store.firmeadowllc.com/index.php">Fir Meadow LLC</a>. Our goats are fed second-cutting
+                    orchard grass and alfalfa brought in from eastern WA (sold by
+                    <a href="http://www.yellowpages.com/poulsbo-wa/mip/poulsbo-feed-and-grain-483824187?lid=1000319975328">Brad Green</a>).
+                </p>
+                <p>
+                    If we have any goats available right now, they will be listed below. Thanks so much for visiting Goat Mountain View!
+                </p>
+            </div>
+        </div>
+        <span class="content-section-spacer"></span>
+        <div class="content-section">
+            <div class="content-section-row">
+                <div class="paragraph-container" style="align-items: center;">
+                    <img src="/static/images/ags.png" class="content-image" style="margin-bottom: 20px;">
+                    <p>
+                        Member since 2006
+                    </p>
+                </div>
+                <div class="paragraph-container" style="align-items: center;">
+                    <img src="/static/images/adga.png" class="content-image" style="margin-bottom: 20px;">
+                    <p>
+                        Member of ADGA since 2007
+                    </p>
+                </div>
+                <div class="paragraph-container" style="align-items: center;">
+                    <img src="/static/images/andda.jpg" class="content-image" style="margin-bottom: 20px;">
+                </div>
+            </div>
+        </div>
+        <span class="content-section-spacer"></span>
+        <div class="content-section">
+            <p><b>No goats are available for adoption at this time</b></p>
+            <p>Please send an email to <a href="mailto:editormelinda@outlook.com">EditorMelinda@outlook.com</a> or use my <a href="/contact">Contact Form</a></p>
+            <p>I can also be reached through Facebook: <a href="https://www.facebook.com/GoatMountainViewFarm/">GoatMountainViewFarm</a></p>
+        </div>
+    </div>
 {% endblock %}

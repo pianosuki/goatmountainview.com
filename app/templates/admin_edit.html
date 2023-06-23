@@ -19,28 +19,44 @@
     {% endwith %}
     <div class="admin-panel">
         <h2>Editing table: <b>{{ table_name|title }}</b></h2>
-        <ul class="table-columns">
-            {% for column in table["table_columns"] %}
-                <li>{{ column|title }}</li>
-            {% endfor %}
-        </ul>
         <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}" enctype="multipart/form-data" class="input-form">
-            {% for column in table["table_columns"] %}
-                {% if column == "id" %}
-                    {% if table["table_rows"]|length > 0%}
-                        <p>{{ row_id }}</p>
-                    {% else %}
-                        <p>1</p>
-                    {% endif %}
-                {% elif column == "image" %}
-                    <label for="file-upload" class="custom-file-upload">Choose File</label>
-                    <input id="file-upload" type="file" name="image" accept=".jpg, .jpeg, .png">
-                {% else %}
-                    <input type="text" name="{{ column }}" placeholder="{{ column }}" value="{{ table['table_rows'][row_id - 1][loop.index - 1] if column != 'password' else '' }}" required>
-                {% endif %}
-            {% endfor %}
-            <input type="hidden" name="action" value="edit">
-            <button type="submit" class="edit-btn">Edit</button>
+            <table>
+                <thead>
+                    <tr>
+                        {% for column in table["table_columns"] %}
+                            <th>{{ column|title }}</th>
+                        {% endfor %}
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            {% for column in table["table_columns"] %}
+                                {% set current_value = get_table_row_column(table_name, row_id, column) %}
+                                <td>
+                                    {% if column == "id" %}
+                                        {% if table["table_rows"]|length > 0%}
+                                            <p>{{ row_id }}</p>
+                                        {% else %}
+                                            <p>1</p>
+                                        {% endif %}
+                                    {% elif column == "description" or column == "comment" or column == "ingredients" %}
+                                        <textarea name="{{ column }}" placeholder="{{ column }}" rows="3" cols="50" {% if not column_is_nullable(table_name, column) %}required{% endif %}>{{ current_value }}</textarea>
+                                    {% elif column == "date" %}
+                                        <input type="datetime-local" name="{{ column }}" value="{{ current_value }}">
+                                    {% else %}
+                                        {% if current_value is none %} {% set current_value = "" %} {% endif %}
+                                        <input type="text" name="{{ column }}" placeholder="{{ column }}" value="{{ current_value if column != 'password' else '' }}" {% if not column_is_nullable(table_name, column) %}required{% endif %}>
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                            <td>
+                                <input type="hidden" name="action" value="edit">
+                                <button type="submit" class="edit-btn">Edit</button>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
         </form>
         <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}">
             <input type="hidden" name="action" value="cancel">

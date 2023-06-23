@@ -1,16 +1,21 @@
 .flash-messages {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    top: 10px;
+    right: 10px;
+    min-width: 25%;
+    max-width: 100%;
     text-align: center;
     opacity: 0.8;
     z-index: 9999;
+    text-shadow: 1px 1px 4px rgba(10, 10, 10, 0.2);
 }
 
 .flash-message {
     padding: 20px;
     margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(10, 10, 10, 0.4);
+    border: 1px solid rgba(180, 180, 180, 0.4);
 }
 
 .flash-info {

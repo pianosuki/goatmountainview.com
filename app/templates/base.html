@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
     {% endblock %}
+    {% block scripts %}
+    {% endblock %}
 </head>
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -65,10 +67,18 @@
 
     <main class="main">
         {% block content %}{% endblock %}
+        <div class="content-body content-section" style="padding-top: 0;">
+            <span class="content-section-spacer"></span>
+            <img src="{{ url_for('static', filename='images/simple_things.png') }}">
+            <h3>Thank you for visiting!</h3>
+        </div>
     </main>
 
     <footer class="footer">
         <p>Copyright © 2023 Melinda Wedgewood</p>
     </footer>
+
+    {% block post_render_scripts %}
+    {% endblock %}
 </body>
 </html>

@@ -11,4 +11,39 @@
 {% endblock %}
 
 {% block content %}
+    {% if slideshow_images %}
+        <div class="content-header">
+            <div class="slideshow-container">
+                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                </ul>
+                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    <div class="content-body">
+        <div class="content-section">
+            <h3 class="h3-title">Does</h3>
+            <div class="content-container">
+                {% for goat in does %}
+                    <div class="content-section-row">
+                        <img src="/static/images/uploads/{{ goat.image.path }}" class="content-image">
+                        <div class="paragraph-container">
+                            {% if goat.link %} <p><a href="{{ goat.link }}">{{ goat.goat.name }}</a></p> {% else %} <p class="null-link">{{ goat.goat.name }}</p> {% endif %}
+                            {% set paragraph_lines = goat.description|split_string(";") %}
+                            <ul>
+                                {% for line in paragraph_lines %}
+                                    <li>
+                                        {{ line }}{% if not loop.last %}<br>{% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

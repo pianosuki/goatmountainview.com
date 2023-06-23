@@ -61,11 +61,13 @@
                     {% else %}
                         <p>1</p>
                     {% endif %}
-                {% elif column == "image" %}
+                {% elif column == "date" %}
+                    <input type="datetime-local" name="{{ column }}" value="{{ current_date_time() }}">
+                {% elif column == "filename" or column == "image_id" %}
                     <label for="file-upload" class="custom-file-upload">Choose File</label>
                     <input id="file-upload" type="file" name="image" accept=".jpg, .jpeg, .png">
                 {% else %}
-                    <input type="text" name="{{ column }}" placeholder="{{ column }}" required>
+                    <input type="text" name="{{ column }}" placeholder="{{ column }}" {% if not column_is_nullable(table_name, column) %}required{% endif %}>
                 {% endif %}
             {% endfor %}
             <input type="hidden" name="action" value="add">

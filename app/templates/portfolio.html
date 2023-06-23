@@ -11,4 +11,46 @@
 {% endblock %}
 
 {% block content %}
+    {% if filenames %}
+         <div class="content-header">
+            <div class="slideshow-container">
+                <ul class="slideshow-list" style="animation-duration: {{ (filenames|length / slideshow_width * 20000)|round }}s;">
+                    {% for file in filenames %}<li class="slideshow-list-item"><img src="/static/images/books/{{ file }}"></li>{% endfor %}
+                </ul>
+                <ul class="slideshow-list" style="animation-duration: {{ (filenames|length / slideshow_width * 20000)|round }}s;">
+                    {% for file in filenames %}<li class="slideshow-list-item"><img src="/static/images/books/{{ file }}"></li>{% endfor %}
+                </ul>
+            </div>
+     {% endif %}
+    </div>
+    <div class="content-body">
+        <div class="content-section">
+            <div class="about-container">
+                <h3>Current focus</h3>
+                <p>
+                    Since fall of 2021, I have focused on editing articles to be published by <a href="https://www.cell.com/about">Cell Press</a>.
+                    This is highly rewarding work. The main journals that I work on are as follows: <i>Biophysical Journal, Cell Reports,
+                    Matter, One Earth, Patterns, Structure, <b>Molecular Therapy - Nucleic Acids, Molecular Therapy - Oncolytics, Stem Cell Reports,
+                    Cell Chemical Biology, Human Genetics and Genomics Advances, Molecular Therapy, Chem Catalysis, The Innovation.</b></i>
+                </p>
+            </div>
+            <h3>Representative works published by Elsevier that I have copyedited</h3>
+            <div class="content-container">
+                <div class="paragraph-container">
+                    <ul>
+                        {% for book in books["table_rows"] %}
+                            {% set editors_list = book[find_item_index(books["table_columns"], "editors")]|split_string(";") %}
+                            <li>
+                                <a href="{{ book[find_item_index(books['table_columns'], 'link')] }}">
+                                    <i>{{ book[find_item_index(books["table_columns"], "name")] }}</i>
+                                </a>
+                                , ed(s). {% for editor in editors_list %} {{ editor }}{% if not loop.last %} & {% endif %} {% endfor %}
+                                ({{ book[find_item_index(books["table_columns"], "year")] }})
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

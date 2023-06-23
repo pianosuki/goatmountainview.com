@@ -1,0 +1,685 @@
+{
+  "images" : [
+    {
+      "filename": "default_soap.png"
+    },
+    {
+      "filename": "default_goat.png"
+    }
+  ],
+
+  "soaps": [
+    {
+      "name": "Sea Salt",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Sea Clay, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/salty_orig.jpg"
+    },
+    {
+      "name": "Coastal Rain",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Pumice Sand, Fragrance.",
+      "weight": 3.5,
+      "image_id": "soap/signature_orig.jpg"
+    },
+    {
+      "name": "Eucalyptus and Cotton",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Sweet Almond Oil, Fragrance.",
+      "weight": 3.5,
+      "image_id": "soap/celestial_orig.jpg"
+    },
+    {
+      "name": "Birchwood Oud",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Cocoa, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/sassenach_orig.jpg"
+    },
+    {
+      "name": "White Magnolia",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Kaolin Clay, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/importance_orig.jpg"
+    },
+    {
+      "name": "Warm Flannel",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Rhassoul Clay, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/dictionary_orig.jpg"
+    },
+    {
+      "name": "Juniper Sage",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/narnia_orig.jpg"
+    },
+    {
+      "name": "Coconut Citrus Strawberry",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/chick-lit_orig.jpg"
+    },
+    {
+      "name": "Oatmeal, Milk, & Honey",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Colloidal Oatmeal, Cocoa, Cinnamon, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/tea_orig.jpg"
+    },
+    {
+      "name": "Galactic Skies",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+      "weight": 3.5,
+      "image_id": "soap/bbf_orig.jpg"
+    },
+    {
+      "name": "Champagne",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Rose Clay, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/chapter-5_orig.jpg"
+    },
+    {
+      "name": "Orange & Vanilla",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/chapter-3_orig.jpg"
+    },
+    {
+      "name": "Lavender",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Alkanet Root, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/imgp1084_orig.jpg"
+    },
+    {
+      "name": "Unscented",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut.",
+      "weight": 4.0,
+      "image_id": "soap/plainjane_orig.jpg"
+    },
+    {
+      "name": "Lavender & Lemongrass",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Essential Oil of Lemongrass, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/shirley_orig.jpg"
+    },
+    {
+      "name": "Rustic Woods & Rum",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Kaolin Clay, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/mr-grey_orig.jpg"
+    },
+    {
+      "name": "Cherry Almond",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Kaolin Clay, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/wash_orig.jpg"
+    },
+    {
+      "name": "Midnight Waters",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+      "weight": 4.0,
+      "image_id": "soap/imgp1083_orig.jpg"
+    },
+    {
+      "name": "Eucalyptus Spearmint",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Essential Oils of Eucalyptus and Spearmint.",
+      "weight": 4.0,
+      "image_id": "soap/badass_orig.jpg"
+    },
+    {
+      "name": "Vanilla & Rosewood",
+      "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Sweet Almond Oil, Fragrance.",
+      "weight": 3.5,
+      "image_id": "soap/imgp1086_orig.jpg"
+    }
+  ],
+
+  "books": [
+    {
+      "name": "Translational Regenerative Medicine",
+      "editors": "Atala, A.;Allickson, J.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/translational-regenerative-medicine/atala/978-0-12-410396-2"
+    },
+    {
+      "name": "Handbook of Crystal Growth: Volume 1A",
+      "editors": "Nishinaga, T.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/handbook-of-crystal-growth/nishinaga/978-0-444-56369-9"
+    },
+    {
+      "name": "Handbook of Crystal Growth: Volume 2A",
+      "editors": "Rudolph, P.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/handbook-of-crystal-growth/rudolph/978-0-444-63303-3"
+    },
+    {
+      "name": "Handbook of Crystal Growth: Volume 3A",
+      "editors": "Keuch, T.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/handbook-of-crystal-growth/kuech/978-0-444-63304-0"
+    },
+    {
+      "name": "Bioenergy: Biomass to Biofuels",
+      "editors": "Dahiya, A.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/bioenergy/dahiya/978-0-12-407909-0"
+    },
+    {
+      "name": "Handbook of Flexible Organic Electronics: Materials, Manufacturing and Applications",
+      "editors": "Logothetidis, S.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/handbook-of-flexible-organic-electronics/logothetidis/978-1-78242-035-4"
+    },
+    {
+      "name": "Gold Nanoparticles in Analytical Chemistry",
+      "editors": "Valcárcel, M.;López-Lorente, Á.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/gold-nanoparticles-in-analytical-chemistry/valcandampaacutercel/978-0-444-63286-9"
+    },
+    {
+      "name": "Eco-friendly Innovation in Electricity Transmission and Distribution Networks",
+      "editors": "Bessede, J.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/eco-friendly-innovation-in-electricity-transmission-and-distribution-networks/bessede/978-1-78242-010-1"
+    },
+    {
+      "name": "Household Service Robotics",
+      "editors": "Xu, Y.;Qian, H.;Wu, X.",
+      "year": 2014,
+      "link": "http://www.elsevier.com/books/household-service-robotics/xu/978-0-12-800881-2"
+    },
+    {
+      "name": "Mucosal Immunology",
+      "editors": "Mestecky, J.;et al.",
+      "year": 2015,
+      "link": "http://www.elsevier.com/books/mucosal-immunology/mestecky/978-0-12-415847-4"
+    },
+    {
+      "name": "Eco-efficient Materials for Mitigating Building Cooling Needs: Design, Properties and Applications",
+      "editors": "Pacheco-Torgal, F.;et al.",
+      "year": 2015,
+      "link": "http://www.elsevier.com/books/eco-efficient-materials-for-mitigating-building-cooling-needs/pacheco-torgal/978-1-78242-380-5"
+    },
+    {
+      "name": "Re-Engineering Clinical Trials: Best Practices for Streamlining the Development Process",
+      "editors": "Schüler, P.;Buckley, B.",
+      "year": 2015,
+      "link": "http://www.elsevier.com/books/re-engineering-clinical-trials/schandampuumller/978-0-12-420246-7"
+    },
+    {
+      "name": "Handbook of Antioxidants for Food Preservation",
+      "editors": "Shahidi, F.",
+      "year": 2015,
+      "link": "http://www.elsevier.com/books/handbook-of-antioxidants-for-food-preservation/shahidi/978-1-78242-089-7"
+    },
+    {
+      "name": "Acoustic emission and related non-destructive evaluation techniques in the fracture mechanics of concrete: Fundamentals and Applications",
+      "editors": "Ohtsu, M.",
+      "year": 2015,
+      "link": "http://www.elsevier.com/books/acoustic-emission-and-related-non-destructive-evaluation-techniques-in-the-fracture-mechanics-of-concrete/ohtsu/978-1-78242-327-0"
+    },
+    {
+      "name": "Guide to Research Techniques in Neuroscience, 2nd Edition",
+      "editors": "Carter, M.;Shieh, J.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128005118&pagename=search"
+    },
+    {
+      "name": "Fabric Structures in Architecture, 1st Edition",
+      "editors": "Llorens, J.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9781782422334&pagename=search"
+    },
+    {
+      "name": "Industrial Tomography, 1st Edition",
+      "editors": "Wang, M.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9781782421184&pagename=search"
+    },
+    {
+      "name": "Fatigue of Textile Composites, 1st Edition",
+      "editors": "Carvelli, V.;Lomov, S.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9781782422815&_requestid=841522"
+    },
+    {
+      "name": "Vehicle Handling Dynamics, 2nd Edition",
+      "editors": "Abe, M.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780081003909&pagename=search"
+    },
+    {
+      "name": "Keeping Religious Institutions Secure, 1st Edition",
+      "editors": "McLamb, J.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128013465&_requestid=841728"
+    },
+    {
+      "name": "Oral and Maxillofacial Surgical Secrets, Abubaker, 3rd Edition",
+      "editors": "Abubaker, A.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780323294324&pagename=search"
+    },
+    {
+      "name": "Statistics for Food Scientists, 1st Edition",
+      "editors": "Rossi, F.;Mirtchev, V.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780124171794&pagename=search"
+    },
+    {
+      "name": "Guide to Cell Therapy GxP, 1st Edition",
+      "editors": "Vives, J.;Carmona, G.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128031155&pagename=search"
+    },
+    {
+      "name": "Amazonite: Mineralogy, Crystal Chemistry, and Typomorphism, 1st Edition",
+      "editors": "Ostrooumov, M.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128037218&pagename=search"
+    },
+    {
+      "name": "Performance Psychology, 1st Edition",
+      "editors": "Raab, M.;et al.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128033777&pagename=search"
+    },
+    {
+      "name": "Coastal Ocean Observing Systems, 1st Edition",
+      "editors": "Liu, Y.;et al.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128020227&pagename=search"
+    },
+    {
+      "name": "Person-Centered Communication with Older Adults, 1st Edition",
+      "editors": "Storlie, T.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780124201323&pagename=search"
+    },
+    {
+      "name": "Mitochondrial Case Studies, 1st Edition",
+      "editors": "Saneto, R.;et al.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128008775&_requestid=2196595"
+    },
+    {
+      "name": "CAPA in the Pharmaceutical and Biotech Industries 1st Edition",
+      "editors": "Rodriguez, J.",
+      "year": 2015,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9781907568589&pagename=search"
+    },
+    {
+      "name": "Advanced Fibrous Composite Materials for Ballistic Protection, 1st Edition",
+      "editors": "Chen, X.",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9781782424611&pagename=search"
+    },
+    {
+      "name": "Information Systems for the Fashion and Apparel Industry, 1st Edition",
+      "editors": "Choi, T.",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780081005712&pagename=search"
+    },
+    {
+      "name": "Nonconventional and Vernacular Construction Materials, 1st Edition",
+      "editors": "Harries;Sharma",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780081008713&pagename=search"
+    },
+    {
+      "name": "Handbook for Transversely Finned Tube Heat Exchanger Design, 1st Edition",
+      "editors": "Pioro;et al.",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128043974&pagename=search"
+    },
+    {
+      "name": "Marine Concrete Structures",
+      "editors": "Alexander, M.",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780081009055&pagename=search"
+    },
+    {
+      "name": "Pharmacology and Therapeutics for Dentistry, 7th Edition",
+      "editors": "Dowd;Johnson;Mariotti",
+      "year": 2016,
+      "link": "https://shop.elsevier.com/books/pharmacology-and-therapeutics-for-dentistry/johnson/978-0-323-39307-2"
+    },
+    {
+      "name": "Negative Affective States and Cognitive Impairments in Nicotine Dependence, 1st Edition",
+      "editors": " Hall;Young;Der-Avakian",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128025741&pagename=search"
+    },
+    {
+      "name": "Chromatin Signaling and Diseases, 1st Edition",
+      "editors": "Binda;Fernandez-Zapico",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780128023891&pagename=search"
+    },
+    {
+      "name": "On Human Nature, 1st Edition",
+      "editors": "Tibayrenc;Ayala",
+      "year": 2016,
+      "link": "http://store.elsevier.com/product.jsp?isbn=9780124201903&pagename=search"
+    },
+    {
+      "name": "Vegetarian and Plant-Based Diets in Health and Disease Prevention, 1st Edition",
+      "editors": "Mariotti",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/vegetarian-and-plant-based-diets-in-health-and-disease-prevention/mariotti/978-0-12-803968-7?start_rank=1&sortby=sortByDateDesc&author=fran%C3%A7ois%20mariotti"
+    },
+    {
+      "name": "Environmental Management, 1st Edition",
+      "editors": "Krishna;Manickam",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/environmental-management/krishna/978-0-12-811989-1?start_rank=1&publicationyear=2017&sortby=sortByRelevance&author=fran%C3%A7ois%20mariotti&q=krishna"
+    },
+    {
+      "name": "Shale Gas, 1st Edition",
+      "editors": "Dayal;Mani",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/shale-gas/dayal/978-0-12-809573-7?start_rank=1&sortby=sortByDateDesc&author=fran%C3%A7ois%20mariotti&q=dayal"
+    },
+    {
+      "name": "Modern Inorganic Synthetic Chemistry, 2nd Edition",
+      "editors": "Xu;Xu",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/modern-inorganic-synthetic-chemistry/xu/978-0-444-63591-4?start_rank=1&sortby=sortByDateDesc&q=xu"
+    },
+    {
+      "name": "Port Cybersecurity, 1st Edition",
+      "editors": "Polemi",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/port-cybersecurity/polemi/978-0-12-811818-4"
+    },
+    {
+      "name": "Neuromonitoring Techniques, 1st Edition",
+      "editors": "Prabhakar",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/neuromonitoring-techniques/prabhakar/978-0-12-809915-5"
+    },
+    {
+      "name": "Weighted Residual Methods, 1st Edition",
+      "editors": "Hatami",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/weighted-residual-methods/hatami/978-0-12-813218-0"
+    },
+    {
+      "name": "Human Colonization of the Artic: The Interaction Between Early Migration and the Paleoenvironment, 1st Edition",
+      "editors": "Kotlyakov;Velichko;Vasil'ev",
+      "year": 2017,
+      "link": "https://www.elsevier.com/books/human-colonization-of-the-arctic-the-interaction-between-early-migration-and-the-paleoenvironment/kotlyakov/978-0-12-813532-7"
+    },
+    {
+      "name": "Methods in Consumer Research, 1st Edition",
+      "editors": "Ares;Varela",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/methods-in-consumer-research-volume-1/ares/978-0-08-102089-0"
+    },
+    {
+      "name": "Principles of Hormone/Behavior Relations",
+      "editors": "Pfaff;et al.",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/principles-of-hormone-behavior-relations/pfaff/978-0-12-802629-8"
+    },
+    {
+      "name": "Molecular-Genetic and Statistical Techniques for Behavioral and Neural Research, 1st Edition",
+      "editors": "Gerlai",
+      "year": 2018,
+      "link": "https://shop.elsevier.com/books/molecular-genetic-and-statistical-techniques-for-behavioral-and-neural-research/gerlai/978-0-12-804078-2"
+    },
+    {
+      "name": "Mechanical and Physical Testing of Biocomposites, Fibre-Reinforced Composites and Hybrid Composites, 1st Edition",
+      "editors": "Jawaid;Thariq;Saba",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/mechanical-and-physical-testing-of-biocomposites-fibre-reinforced-composites-and-hybrid-composites/jawaid/978-0-08-102292-4"
+    },
+    {
+      "name": "Emery and Rimoin's Principles and Practice of Medical Genetics and Genomics, 7th Edition",
+      "editors": "Pyeritz;Korf;Grody",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/emery-and-rimoin-s-principles-and-practice-of-medical-genetics-and-genomics/pyeritz/978-0-12-812536-6"
+    },
+    {
+      "name": "Long-term Performance and Durability of Masonry Structures, 1st Edition",
+      "editors": "Ghiassi;Lourenco",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/long-term-performance-and-durability-of-masonry-structures/ghiassi/978-0-08-102110-1"
+    },
+    {
+      "name": "Horse Pasture Management, 1st Edition",
+      "editors": "Sharpe",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/horse-pasture-management/sharpe/978-0-12-812919-7"
+    },
+    {
+      "name": "Marine Mammal Ecotoxicology, 1st Edition",
+      "editors": "Fossi and Panti",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/marine-mammal-ecotoxicology/fossi/978-0-12-812144-3"
+    },
+    {
+      "name": "Nanocarriers for Drug Delivery, 1st Edition",
+      "editors": "Mohapatra;et al.",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/nanocarriers-for-drug-delivery/mohapatra/978-0-12-814033-8"
+    },
+    {
+      "name": "Agroecosystem Diversity, 1st Edition",
+      "editors": "Lemaire;et al.",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/agroecosystem-diversity/lemaire/978-0-12-811050-8"
+    },
+    {
+      "name": "Studies on Hepatitis Viruses, 1st Edition",
+      "editors": "Gupta",
+      "year": 2018,
+      "link": "https://www.elsevier.com/books/studies-on-hepatitis-viruses/gupta/978-0-12-813330-9"
+    },
+    {
+      "name": "Methods of Fundamental Solutions in Solid Mechanics, 1st Edition",
+      "editors": "Wang;Qin",
+      "year": 2019,
+      "link": "https://www.elsevier.com/books/methods-of-fundamental-solutions-in-solid-mechanics/wang/978-0-12-818283-3"
+    },
+    {
+      "name": "Grid-Scale Energy Storage Systems and Applications, 1st Edition",
+      "editors": "Wu;et al.",
+      "year": 2019,
+      "link": "https://www.elsevier.com/books/grid-scale-energy-storage-systems-and-applications/wu/978-0-12-815292-8"
+    },
+    {
+      "name": "Hormone Signaling in Biology and Medicine, 1st Edition",
+      "editors": "Litwack",
+      "year": 2019,
+      "link": "https://www.elsevier.com/books/hormonal-signaling-in-biology-and-medicine/litwack/978-0-12-813814-4"
+    },
+    {
+      "name": "Medicinal Plants of South Asia, 1st Edition",
+      "editors": "Hanif;et al.",
+      "year": 2019,
+      "link": "https://www.elsevier.com/books/medicinal-plants-of-south-asia/hanif/978-0-08-102659-5"
+    },
+    {
+      "name": "Biovalorisation of Wastes to Renewable Chemicals and Fuels, 1st Edition",
+      "editors": "Krishnaraj;Sani",
+      "year": 2019,
+      "link": "https://www.elsevier.com/books/biovalorisation-of-wastes-to-renewable-chemicals-and-biofuels/rathinam/978-0-12-817951-2"
+    },
+    {
+      "name": "Catalysis, Green Chemistry and Sustainable Energy, Volume 179, 1st Edition",
+      "editors": "Basile;et al.",
+      "year": 2019,
+      "link": "https://www.elsevier.com/books/catalysis-green-chemistry-and-sustainable-energy/basile/978-0-444-64337-7"
+    },
+    {
+      "name": "Electronic Structure and Surfaces of Sulfide Minerals, 1st Edition",
+      "editors": "Chen;et al.",
+      "year": 2020,
+      "link": "https://www.elsevier.com/books/electronic-structure-and-surfaces-of-sulfide-minerals/chen/978-0-12-817974-1"
+    },
+    {
+      "name": "Beneficial Microbes in Agro-Ecology, 1st Edition",
+      "editors": "Amaresan;et al.",
+      "year": 2020,
+      "link": "https://www.elsevier.com/books/beneficial-microbes-in-agro-ecology/amaresan/978-0-12-823414-3"
+    },
+    {
+      "name": "Geological Records of Tsunamis and Other Extreme Waves, 1st Edition",
+      "editors": "Engel;et al.",
+      "year": 2020,
+      "link": "https://www.elsevier.com/books/geological-records-of-tsunamis-and-other-extreme-waves/engel/978-0-12-815686-5"
+    },
+    {
+      "name": "Security in IoT Social Networks, 1st Edition",
+      "editors": "Al-Turjman and Deebak",
+      "year": 2020,
+      "link": "https://www.elsevier.com/books/security-in-iot-social-networks/al-turjman/978-0-12-821599-9"
+    },
+    {
+      "name": "Historical Ethnobiology, 1st Edition",
+      "editors": "Medeiros",
+      "year": 2020,
+      "link": "https://www.elsevier.com/books/historical-ethnobiology/medeiros/978-0-12-816245-3"
+    },
+    {
+      "name": "Advances in 2nd Generation of Bioethanol Production, 1st Edition",
+      "editors": "Lu",
+      "year": 2021,
+      "link": "https://www.elsevier.com/books/advances-in-2nd-generation-of-bioethanol-production/lu/978-0-12-818862-0"
+    },
+    {
+      "name": "Electronic Devices, Circuits, and Systems for Biomedical Applications, 1st Edition",
+      "editors": "Tripathi;et al.",
+      "year": 2021,
+      "link": "https://www.elsevier.com/books/electronic-devices-circuits-and-systems-for-biomedical-applications/tripathi/978-0-323-85172-5"
+    },
+    {
+      "name": "Shield Construction Techniques in Tuneling, 1st Edition",
+      "editors": "Chen;et al.",
+      "year": 2021,
+      "link": "https://www.elsevier.com/books/shield-construction-techniques-in-tunnelling/chen/978-0-12-820127-5"
+    },
+    {
+      "name": "Microbial Metabolism and Disease, 1st Edition",
+      "editors": "Paley",
+      "year": 2021,
+      "link": "https://www.elsevier.com/books/microbial-metabolism-and-disease/paley/978-0-323-88445-7"
+    }
+  ],
+
+  "goats": [
+    {
+      "name": "Goat Mountain View Hopeful"
+    },
+    {
+      "name": "Goat Mountain View Justice"
+    },
+    {
+      "name": "Goat Mountain View Ellie (Heather)"
+    },
+    {
+      "name": "Goat Mountain View Haven"
+    },
+    {
+      "name": "Goat Mountain View Mavis"
+    },
+    {
+      "name": "Goat Mountain View Primrose"
+    },
+    {
+      "name": "Goat Mountain View Promise"
+    },
+    {
+      "name": "Goat Mountain View Limerick"
+    },
+    {
+      "name": "Goat Mountain View Xlnt Storm"
+    },
+    {
+      "name": "Oak Tree Meadows Hurricane"
+    },
+    {
+      "name": "Starbucks Poetry"
+    },
+    {
+      "name": "AGS Carrie's Caprine's LBE Sable"
+    }
+  ],
+
+  "does": [
+    {
+      "goat_id": "Goat Mountain View Hopeful",
+      "description": "Gold buckskin with white, blue eyes, and polled;MR Blue MacLibbyHeart x GMV Hailey 1*M;Born June 2015;Dual-registered with ADGA and AGS",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001745019",
+      "image_id": "img-3319-orig_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Justice",
+      "description": "Light buckskin with blue eyes, polled;Goat Mountain View Dust Storm X Goat Mountain View Hopeful;Born October 2017;Registered with ADGA",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001917837",
+      "image_id": "justice-2_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Ellie (Heather)",
+      "description": "Dark buckskin with frosted ears;AGS Tupence TH Magnum Opus x Goat Mountain View Poem 1*M;Born March 2017;Registered with ADGA",
+      "link": "https://adgagenetics.org/GoatDetail.aspx?RegNumber=D002008055",
+      "image_id": "heather_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Haven",
+      "description": "Grey agouti with partial blaze and blue eyes, polled;MR Maclibbyheart X Goat Mountain View Patience;Born February 2019;Registered with ADGA",
+      "link": "https://adgagenetics.org/GoatDetail.aspx?RegNumber=D002007744",
+      "image_id": "haven-2_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Mavis",
+      "description": "Medium buckskin with white poll and frosting;MR Blue MacLibbyHeart x GMV Justice;Born April 2020;Registered with ADGA",
+      "link": "https://adgagenetics.org/GoatDetail.aspx?RegNumber=D002106266",
+      "image_id": "imgp0358_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Primrose",
+      "description": "Light buckskin with blue eyes;Angel Wings Prince x Goat Mountain View Justice;Born February 2022",
+      "link": null,
+      "image_id": "primrose2-2_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Promise",
+      "description": "Medium buckskin with white poll and frosting;Angel Wings Prince x Goat Mountain View Mavis;Born February 2022",
+      "link": null,
+      "image_id": "promise-2_orig.jpg"
+    }
+  ],
+
+  "foundation": [
+    {
+      "goat_id": "Goat Mountain View Limerick",
+      "description": "Gold and white with blue eyes;Raven Crest True Blue X Starbucks Poetry;Born April 2007;Died in 2019;Height = 19.75\";Ten freshenings -- total of 27 kids;(10 bucklings, 17 doelings);Dual-registered with ADGA and AGS;LA 2007 ++V (YS);LA 2008 +VVA 81 (FF);LA 2017 +VE+ 84",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001408786",
+      "image_id": "2736925-orig_orig.jpg"
+    },
+    {
+      "goat_id": "Goat Mountain View Xlnt Storm",
+      "description": "Buckskin with Blue Eyes and Polled;Camanna WR Tsunami X Carrie's Caprine's LBE Sable;Born February 2007;Died in 2013;Height = 21\";Registered with ADGA;LA 2007 +VV (YS);LA 2008 ++V 81",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001399985",
+      "image_id": "812944_orig.jpg"
+    },
+    {
+      "goat_id": "Oak Tree Meadows Hurricane",
+      "description": "Tri-Color with Blue Eyes and Polled;Camanna WR Tsunami X Oak Tree Meadows Easter Lily;Born April 2009;Sold in 2011 to 4H youth in Puyallup;Height = 21\";Registered with ADGA",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001504954",
+      "image_id": "5258651_orig.jpg"
+    },
+    {
+      "goat_id": "Starbucks Poetry",
+      "description": "White with Gold Spots;Woodhaven Farms Mighty Max X Woodhaven Farms Willow Abby;Born May 2003;Died in 2012;Height = 21.5\";Registered with ADGA and AGS;LA 2007 ++VV 82;LA 2008 ++E+ 83 (Dry)",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001379604",
+      "image_id": "616169.jpg"
+    },
+    {
+      "goat_id": "AGS Carrie's Caprine's LBE Sable",
+      "description": "Buckskin with Blue Eyes;Camanna RHB Little Blue Eyes X Camanna MM Bunny;Born April 2005;Sold in 2009 to WA hobby farm;Height = 18\";Registered with ADGA and AGS;LA 2007 +++A 79",
+      "link": "http://adgagenetics.org/GoatDetail.aspx?RegNumber=D001398508",
+      "image_id": "6826715_orig.jpg"
+    }
+  ]
+}

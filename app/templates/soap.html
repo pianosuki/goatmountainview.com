@@ -14,7 +14,7 @@
     <div class="content-header">
         <div class="content-header-container">
             <div class="content-header-item">
-                <img src="{{ url_for('static', filename='images/soap.jpg') }}">
+                <img src="/static/images/soap.jpg">
             </div>
         </div>
     </div>
@@ -37,14 +37,17 @@
             </p>
         </div>
         <span class="content-section-spacer"></span>
-        <div class="content-section content-grid">
-            {% for soap in soaps %}
-                <div class="content-grid-item">
-                    <h3>{{ soap.name }}</h3>
-                    <p>{{ soap.ingredients }}</p>
-                    <p>{{ soap.weight }}</p>
-                </div>
-            {% endfor %}
+        <div class="content-section">
+            <div class="content-grid">
+                {% for soap in soaps %}
+                    <div class="content-grid-item">
+                        <img src="/static/images/uploads/{{ soap.image.path }}" class="content-image">
+                        <h3 class="h3-title">{{ soap.name }}</h3>
+                        <p>INGREDIENTS: {{ soap.ingredients }}</p>
+                        <p>Net wt. approx. {{ soap.weight }} ounces</p>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}
