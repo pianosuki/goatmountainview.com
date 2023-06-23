@@ -1,3 +1,5 @@
+![Logo](/app/static/images/simple_things.png)
+
 # Goat Mountain View
 
 Copyediting and Nigerian Dwarf Goats in Washington.
