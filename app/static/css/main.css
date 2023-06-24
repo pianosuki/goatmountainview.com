@@ -180,6 +180,7 @@ h4 {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 1 1 33.33%;
 }
 
 .content-header-item > *:not(:last-child) {
@@ -208,7 +209,7 @@ h4 {
     box-shadow: 1px 1px 6px rgba(30, 30, 30, 0.5);
     border-radius: 16px;
     border: 1px solid #555;
-    max-width: 1000px;
+    max-width: 100%;
     max-height: 360px;
 }
 
@@ -224,7 +225,7 @@ h4 {
 }
 
 .content-section {
-    padding: 32px 16px;
+    padding: 32px 32px;
     color: #111;
     font-family: 'Open Sans', Helvetica, sans-serif;
     line-height: 180%;
@@ -348,13 +349,15 @@ h4 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    max-width: 100%;
+    flex: 1 1 33.33%;
 }
 
-.paragraph-container p:not(:last-child) {
+.paragraph-container *:not(:last-child) {
     margin-bottom: 16px;
 }
 
-.paragraph-container > p:last-child {
+.paragraph-container > *:last-child {
     margin-bottom: 0;
 }
 
@@ -368,6 +371,12 @@ h4 {
 
 .paragraph-container li:not(:last-child) {
     margin-bottom: 8px;
+}
+
+.paragraph-container img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 
 .contact-container {
@@ -428,7 +437,7 @@ h4 {
   background-color: #45a049;
 }
 
-.contact-container > img {
+.contact-container img {
     box-shadow: 1px 1px 4px rgba(30, 30, 30, 0.5);
     border-radius: 16px;
     border: 1px solid #555;
@@ -481,6 +490,9 @@ h4 {
     background-color: #fafafa;
     padding: 32px;
     box-shadow: 0 0 5px rgba(200, 200, 200, 0.5);
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-container > *:not(:last-child) {
@@ -508,9 +520,30 @@ h4 {
     justify-content: center;
 }
 
+.page-nav-row {
+    margin-top: 16px;
+}
+
+a.page-button {
+    text-decoration: none;
+    background-color: #A84A42;
+    color: #fff;
+    padding: 8px 16px;
+    align-self: flex-start;
+    font-weight: 600;
+}
+
+a.page-button:hover {
+    background-color: #76342e;
+}
+
+.content-section .section-title {
+    margin-bottom: 32px;
+}
+
 .footer {
     width: 100%;
-    padding: 32px 0;
+    padding: 32px 32px;
     background-color: #242424;
     color: #aaa;
     display: flex;

@@ -14,10 +14,10 @@
     {% if slideshow_images %}
         <div class="content-header">
             <div class="slideshow-container">
-                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
                     {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
                 </ul>
-                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
                     {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
                 </ul>
             </div>
@@ -25,7 +25,7 @@
     {% endif %}
     <div class="content-body">
         <div class="content-section">
-            <h3 class="h3-title">Foundation goats of my Nigerian herd</h3>
+            <h3 class="h3-title section-title">Foundation goats of my Nigerian herd</h3>
             <div class="content-container">
                 {% for goat in foundation %}
                     <div class="content-section-row">
@@ -33,7 +33,7 @@
                             <img src="/static/images/uploads/{{ goat.image.path }}" class="content-image">
                         </div>
                         <div class="paragraph-container">
-                            {% if goat.link %} <p><a href="{{ goat.link }}">{{ goat.goat.name }}</a></p> {% else %} <p class="null-link">{{ goat.goat.name }}</p> {% endif %}
+                            {% if goat.link %} <p><a href="{{ goat.link }}" target="_blank">{{ goat.goat.name }}</a></p> {% else %} <p class="null-link">{{ goat.goat.name }}</p> {% endif %}
                             {% set paragraph_lines = goat.description|split_string(";") %}
                             <ul>
                                 {% for line in paragraph_lines %}
@@ -45,6 +45,11 @@
                         </div>
                     </div>
                 {% endfor %}
+            </div>
+            <div class="content-section-row page-nav-row">
+                <a href="/goats" class="page-button">Goat Home</a>
+                <a href="/goats/adoptions" class="page-button">Does</a>
+                <a href="/goats/foundation" class="page-button">Adoptions</a>
             </div>
         </div>
     </div>

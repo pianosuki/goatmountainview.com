@@ -9,6 +9,7 @@ def extend_env(env):
     env.globals["column_is_nullable"] = crud.column_is_nullable
     env.globals["get_table_row_column"] = crud.get_table_row_column
     env.globals["current_date_time"] = current_date_time
+    env.globals["slideshow_speed_constant"] = 128
 
 
 def split_string(value, delimiter) -> List[str]:

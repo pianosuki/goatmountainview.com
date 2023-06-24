@@ -7,11 +7,16 @@ def allowed_file(filename) -> bool:
     return "." in filename and filename.rsplit(".", 1)[1].lower() in app.config["ALLOWED_EXTENSIONS"]
 
 
-def total_images_width(filenames: List[str]) -> int:
+def total_images_width(filenames: List[str], normalized_height: int = None) -> int:
     total_width = 0
     for filename in filenames:
         with Image.open(filename) as img:
-            total_width += img.width
+            if normalized_height:
+                aspect_ratio = img.width / img.height
+                new_width = int(normalized_height * aspect_ratio)
+                total_width += new_width
+            else:
+                total_width += img.width
     return total_width
 
 

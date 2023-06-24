@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     {% block stylesheets %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/flash.css">
     {% endblock %}
     {% block scripts %}
     {% endblock %}
@@ -69,7 +69,7 @@
         {% block content %}{% endblock %}
         <div class="content-body content-section" style="padding-top: 0;">
             <span class="content-section-spacer"></span>
-            <img src="{{ url_for('static', filename='images/simple_things.png') }}">
+            <img src="/static/images/simple_things.png">
             <h3>Thank you for visiting!</h3>
         </div>
     </main>

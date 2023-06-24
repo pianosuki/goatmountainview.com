@@ -20,8 +20,8 @@ def portfolio():
     books_table = crud.get_table("books")
     image_folder = app.config["STATIC_FOLDER"] + "/images/books/"
     image_filenames = [filename for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
-    images_width = total_images_width([image_folder + image for image in image_filenames])
-    return render_template("portfolio.html", books=books_table, filenames=image_filenames, slideshow_width=images_width)
+    images_width = total_images_width([image_folder + image for image in image_filenames], 200)
+    return render_template("portfolio.html", books=books_table, slideshow_images=image_filenames, slideshow_width=images_width)
 
 
 @app.route("/goats")
@@ -35,7 +35,7 @@ def does():
     image_folder = app.config["UPLOAD_FOLDER"] + "/does"
     image_paths = [f"/uploads/does/{filename}" for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
     image_filenames = [filename for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
-    images_width = total_images_width([os.path.join(image_folder, image) for image in image_filenames])
+    images_width = total_images_width([os.path.join(image_folder, image) for image in image_filenames], 200)
     return render_template("does.html", does=does_list, slideshow_images=image_paths, slideshow_width=images_width)
 
 
@@ -44,7 +44,7 @@ def adoptions():
     image_folder = app.config["UPLOAD_FOLDER"] + "/adoptions"
     image_paths = [f"/uploads/adoptions/{filename}" for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
     image_filenames = [filename for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
-    images_width = total_images_width([os.path.join(image_folder, image) for image in image_filenames])
+    images_width = total_images_width([os.path.join(image_folder, image) for image in image_filenames], 200)
     return render_template("adoptions.html", slideshow_images=image_paths, slideshow_width=images_width)
 
 
@@ -54,7 +54,7 @@ def foundation():
     image_folder = app.config["UPLOAD_FOLDER"] + "/foundation"
     image_paths = [f"/uploads/foundation/{filename}" for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
     image_filenames = [filename for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
-    images_width = total_images_width([os.path.join(image_folder, image) for image in image_filenames])
+    images_width = total_images_width([os.path.join(image_folder, image) for image in image_filenames], 200)
     return render_template("foundation.html", foundation=foundation_list, slideshow_images=image_paths, slideshow_width=images_width)
 
 

@@ -14,10 +14,10 @@
     {% if slideshow_images %}
         <div class="content-header">
             <div class="slideshow-container">
-                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
                     {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
                 </ul>
-                <ul class="slideshow-list" style="animation-duration: {{ (slideshow_images|length / slideshow_width * 20000)|round }}s;">
+                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
                     {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
                 </ul>
             </div>
@@ -25,7 +25,7 @@
     {% endif %}
     <div class="content-body">
         <div class="content-section">
-            <h3 class="h3-title">Nigerian Dwarf Goats for Adoption</h3>
+            <h3 class="h3-title section-title">Nigerian Dwarf Goats for Adoption</h3>
             <div class="about-container">
                 <h4>Last updated May 2023</h4>
                 <p>
@@ -47,14 +47,20 @@
                 <p>
                     All goats receive regular de-worming with Valbazen or Ivermectin, annual CDT vaccinations, and
                     supplementation with CHS 16-8 mineral salt, copper, and Bo-Se. We also supplement with Kop-Sel by
-                    <a href="http://store.firmeadowllc.com/index.php">Fir Meadow LLC</a>. Our goats are fed second-cutting
+                    <a href="http://store.firmeadowllc.com/index.php" target="_blank">Fir Meadow LLC</a>. Our goats are fed second-cutting
                     orchard grass and alfalfa brought in from eastern WA (sold by
-                    <a href="http://www.yellowpages.com/poulsbo-wa/mip/poulsbo-feed-and-grain-483824187?lid=1000319975328">Brad Green</a>).
+                    <a href="http://www.yellowpages.com/poulsbo-wa/mip/poulsbo-feed-and-grain-483824187?lid=1000319975328" target="_blank">Brad Green</a>).
                 </p>
                 <p>
                     If we have any goats available right now, they will be listed below. Thanks so much for visiting Goat Mountain View!
                 </p>
             </div>
+        </div>
+        <span class="content-section-spacer"></span>
+        <div class="content-section">
+            <p><b>No goats are available for adoption at this time</b></p>
+            <p>Please send an email to <a href="mailto:editormelinda@outlook.com">EditorMelinda@outlook.com</a> or use my <a href="/contact">Contact Form</a></p>
+            <p>I can also be reached through Facebook: <a href="https://www.facebook.com/GoatMountainViewFarm/" target="_blank">GoatMountainViewFarm</a></p>
         </div>
         <span class="content-section-spacer"></span>
         <div class="content-section">
@@ -75,12 +81,11 @@
                     <img src="/static/images/andda.jpg" class="content-image" style="margin-bottom: 20px;">
                 </div>
             </div>
-        </div>
-        <span class="content-section-spacer"></span>
-        <div class="content-section">
-            <p><b>No goats are available for adoption at this time</b></p>
-            <p>Please send an email to <a href="mailto:editormelinda@outlook.com">EditorMelinda@outlook.com</a> or use my <a href="/contact">Contact Form</a></p>
-            <p>I can also be reached through Facebook: <a href="https://www.facebook.com/GoatMountainViewFarm/">GoatMountainViewFarm</a></p>
+            <div class="content-section-row page-nav-row">
+                <a href="/goats" class="page-button">Goat Home</a>
+                <a href="/goats/does" class="page-button">Does</a>
+                <a href="/goats/foundation" class="page-button">Foundation</a>
+            </div>
         </div>
     </div>
 {% endblock %}
