@@ -379,71 +379,6 @@ h4 {
     height: auto;
 }
 
-.contact-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-}
-
-.contact-form {
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
-}
-
-.name-container {
-    display: flex;
-    justify-content: space-between;
-}
-
-.form-field {
-    margin-bottom: 16px;
-}
-
-.form-field > textarea {
-    height: 100px;
-    resize: none;
-}
-
-.name-container > .form-field {
-    width: 45%;
-}
-
-.contact-form label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.contact-form input, .contact-form textarea {
-    display: block;
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-}
-
-.contact-form > button {
-    width: 100px;
-    padding: 8px 10px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.contact-form > button:hover {
-  background-color: #45a049;
-}
-
-.contact-container img {
-    box-shadow: 1px 1px 4px rgba(30, 30, 30, 0.5);
-    border-radius: 16px;
-    border: 1px solid #555;
-    height: 400px;
-}
-
 .slideshow-container {
     overflow: hidden;
     white-space: nowrap;
@@ -572,4 +507,67 @@ a.page-button:hover {
 
 .admin-btn:hover {
     opacity: 0.8;
+}
+
+.contact-page {
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: center;
+    color: #333;
+}
+
+.contact-page {
+    max-width: 900px;
+    margin: 2rem auto;
+    color: #333;
+}
+
+.contact-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.contact-text {
+    flex: 1;
+    max-width: 400px;
+}
+
+.contact-text h3 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 2rem;
+}
+
+.contact-text p {
+    font-size: 1.1em;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.contact-link a {
+    display: inline-block;
+    padding: 0.8em 1.5em;
+    font-size: 1.1em;
+    color: white;
+    background-color: #0073b1;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.contact-link a:hover {
+    background-color: #005582;
+}
+
+.contact-image {
+    flex: 1;
+    max-width: 400px;
+}
+
+.contact-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
