@@ -25,30 +25,94 @@
     </div>
     <div class="content-body">
         <div class="content-section">
-            <div class="about-container">
-                <h3>Current focus</h3>
-                <p>
-                    Since fall of 2021, I have focused on editing articles to be published by <a href="https://www.cell.com/about" target="_blank">Cell Press</a>.
-                    This is highly rewarding work. The main journals that I work on are as follows: <i><b>Biophysical Journal, Cell Reports,
-                    Matter, One Earth, Patterns, Structure, Molecular Therapy - Nucleic Acids, Molecular Therapy - Oncolytics, Stem Cell Reports,
-                    Cell Chemical Biology, Human Genetics and Genomics Advances, Molecular Therapy, Chem Catalysis, The Innovation.</b></i>
-                </p>
-            </div>
-            <h3 class="section-title">Representative works published by Elsevier that I have copyedited</h3>
-            <div class="content-container">
-                <div class="paragraph-container">
-                    <ul>
-                        {% for book in books["table_rows"] %}
-                            {% set editors_list = book[find_item_index(books["table_columns"], "editors")]|split_string(";") %}
-                            <li>
-                                <a href="{{ book[find_item_index(books['table_columns'], 'link')] }}" target="_blank">
-                                    <i>{{ book[find_item_index(books["table_columns"], "name")] }}</i>
-                                </a>
-                                , ed(s). {% for editor in editors_list %} {{ editor }}{% if not loop.last %} & {% endif %} {% endfor %}
-                                ({{ book[find_item_index(books["table_columns"], "year")] }})
-                            </li>
-                        {% endfor %}
-                    </ul>
+            <h2 class="timeline-title">Work History</h2>
+            <div class="timeline">
+                <!-- 2025 - Present -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="timeline-year">2025</span>
+                        <span class="timeline-label">Present</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-role">Journal Article Editor</h3>
+                        <p class="timeline-employer">Cell Press Partners</p>
+                        <p class="timeline-description">
+                            Editing journal articles for <a href="https://www.cell.com/biophysj/home" target="_blank"><b>Biophysical Journal</b></a> and
+                            <a href="https://www.cell.com/molecular-therapy-family/molecular-therapy/home" target="_blank"><b>Molecular Therapy</b></a>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2024 - 2025 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="timeline-year">2024</span>
+                        <span class="timeline-label">2025</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-role">Copyeditor</h3>
+                        <p class="timeline-employer">Elsevier, Health Sciences</p>
+                        <p class="timeline-description">Representative works:</p>
+                        <ul class="timeline-book-list">
+                            {% if books_hs and books_hs["table_rows"] %}
+                                {% for book in books_hs["table_rows"] %}
+                                    {% set editors_list = book[find_item_index(books_hs["table_columns"], "editors")]|split_string(";") %}
+                                    <li>
+                                        <a href="{{ book[find_item_index(books_hs['table_columns'], 'link')] }}" target="_blank">
+                                            <i>{{ book[find_item_index(books_hs["table_columns"], "name")] }}</i>
+                                        </a>
+                                        , ed(s). {% for editor in editors_list %} {{ editor }}{% if not loop.last %} & {% endif %} {% endfor %}
+                                        ({{ book[find_item_index(books_hs["table_columns"], "year")] }})
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <li class="placeholder-text">Books coming soon...</li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2021 - 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="timeline-year">2021</span>
+                        <span class="timeline-label">2024</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-role">Journal Article Editor</h3>
+                        <p class="timeline-employer">Cell Press</p>
+                        <p class="timeline-description">
+                            Edited articles for <a href="https://www.cell.com/about" target="_blank"><b>Cell Press</b></a> journals,
+                            which included titles such as <i><b>Biophysical Journal, Cell Reports, Matter, One Earth, Patterns,
+                            Structure, Molecular Therapy - Nucleic Acids, Molecular Therapy - Oncolytics, Stem Cell Reports,
+                            Cell Chemical Biology, Human Genetics and Genomics Advances, Molecular Therapy, Chem Catalysis, The Innovation.</b></i>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2014 - 2021 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="timeline-year">2014</span>
+                        <span class="timeline-label">2021</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-role">Copyeditor</h3>
+                        <p class="timeline-employer">Elsevier, Science & Technology</p>
+                        <p class="timeline-description">Representative works:</p>
+                        <ul class="timeline-book-list">
+                            {% for book in books_st["table_rows"] %}
+                                {% set editors_list = book[find_item_index(books_st["table_columns"], "editors")]|split_string(";") %}
+                                <li>
+                                    <a href="{{ book[find_item_index(books_st['table_columns'], 'link')] }}" target="_blank">
+                                        <i>{{ book[find_item_index(books_st["table_columns"], "name")] }}</i>
+                                    </a>
+                                    , ed(s). {% for editor in editors_list %} {{ editor }}{% if not loop.last %} & {% endif %} {% endfor %}
+                                    ({{ book[find_item_index(books_st["table_columns"], "year")] }})
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

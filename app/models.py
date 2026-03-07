@@ -3,7 +3,17 @@ from flask_login import UserMixin
 from app import db
 import app.crud as crud
 
-__all__ = ["User", "Soap", "Image", "Inquiry", "Book", "Goat", "Doe", "Foundation"]
+__all__ = [
+    "User",
+    "Soap",
+    "Image",
+    "Inquiry",
+    "BookHS",
+    "BookST",
+    "Goat",
+    "Doe",
+    "Foundation"
+]
 
 
 class User(UserMixin, db.Model):
@@ -32,8 +42,10 @@ class Soap(db.Model):
                             column_data[column_name] = crud.image_id_from_string(column_value)
                         else:
                             column_data[column_name] = Soap.image_id.default.arg
+
                 case _:
                     pass
+
         return column_data
 
 
@@ -59,8 +71,10 @@ class Image(db.Model):
                         column_data[column_name] = int(column_value)
                     else:
                         column_data[column_name] = None
+
                 case _:
                     pass
+
         return column_data
 
 
@@ -79,13 +93,24 @@ class Inquiry(db.Model):
             match column_name:
                 case "date":
                     column_data[column_name] = datetime.strptime(column_value, "%Y-%m-%dT%H:%M:%S")
+
                 case _:
                     pass
+
         return column_data
 
 
-class Book(db.Model):
-    __tablename__ = "books"
+class BookHS(db.Model):
+    __tablename__ = "books_hs"
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False, unique=True)
+    editors = db.Column(db.Text(), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    link = db.Column(db.String(200), nullable=False)
+
+
+class BookST(db.Model):
+    __tablename__ = "books_st"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False, unique=True)
     editors = db.Column(db.Text(), nullable=False)
@@ -120,14 +145,17 @@ class Doe(db.Model):
                             column_data[column_name] = crud.image_id_from_string(column_value)
                         else:
                             column_data[column_name] = Doe.image_id.default.arg
+
                 case "goat_id":
                     if isinstance(column_value, str):
                         if column_value:
                             column_data[column_name] = crud.goat_id_from_string(column_value)
                         else:
                             raise ValueError(f"Column '{column_name}' is required")
+
                 case _:
                     pass
+
         return column_data
 
 
@@ -151,12 +179,15 @@ class Foundation(db.Model):
                             column_data[column_name] = crud.image_id_from_string(column_value)
                         else:
                             column_data[column_name] = Foundation.image_id.default.arg
+
                 case "goat_id":
                     if isinstance(column_value, str):
                         if column_value:
                             column_data[column_name] = crud.goat_id_from_string(column_value)
                         else:
                             raise ValueError(f"Column '{column_name}' is required")
+
                 case _:
                     pass
+
         return column_data

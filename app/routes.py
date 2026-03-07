@@ -17,11 +17,12 @@ def index():
 
 @app.route("/portfolio")
 def portfolio():
-    books_table = crud.get_table("books")
+    books_hs_table = crud.get_table("books_hs")
+    books_st_table = crud.get_table("books_st")
     image_folder = app.config["STATIC_FOLDER"] + "/images/books/"
     image_filenames = [filename for filename in os.listdir(image_folder) if os.path.isfile(os.path.join(image_folder, filename))]
     images_width = total_images_width([image_folder + image for image in image_filenames], 200)
-    return render_template("portfolio.html", books=books_table, slideshow_images=image_filenames, slideshow_width=images_width)
+    return render_template("portfolio.html", books_hs=books_hs_table, books_st=books_st_table, slideshow_images=image_filenames, slideshow_width=images_width)
 
 
 @app.route("/goats")
@@ -68,6 +69,7 @@ def soap():
 def contact():
     if request.method == "POST":
         column_data = {}
+
         for key, value in request.form.items():
             match key:
                 case "action":
@@ -76,6 +78,7 @@ def contact():
                     column_data[key] = value.strip().lower().capitalize()
                 case _:
                     column_data[key] = value.strip()
+
         crud.add_table_row("inquiries", column_data)
         flash(f"Success: Your inquiry has been sent", "success")
         return redirect(url_for("contact"))
@@ -89,6 +92,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         user = User.query.filter_by(username=username).first()
+
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             flash("Success: You have logged in", "success")
@@ -96,6 +100,7 @@ def login():
         else:
             flash("Error: Invalid credentials", "error")
             return redirect(url_for("login"))
+
     return render_template("login.html")
 
 
@@ -112,12 +117,14 @@ def logout():
 def admin():
     if request.method == "POST":
         action = request.form.get("action")
+
         match action:
             case "edit":
                 table_name = request.form["table_name"]
                 return redirect(url_for("admin_table", table_name=table_name))
             case "cancel":
                 return redirect(url_for("index"))
+
     tables = list(crud.get_all_tables().keys())
     return render_template("admin.html", tables=tables)
 
@@ -127,22 +134,28 @@ def admin():
 def admin_table(table_name):
     if request.method == "POST":
         action = request.form.get("action")
+
         match action:
             case "add":
                 column_data = {}
                 image_is_uploaded = False
+
                 if "image" in request.files:
                     image = request.files["image"]
+
                     if image.filename == "":
                         flash("Error: No selected file", "error")
                         return redirect(url_for("admin_table", table_name=table_name))
+
                     if image and allowed_file(image.filename):
                         filename = secure_filename(image.filename)
                         directory = request.form["directory"] if table_name == "images" else ""
                         file_path = os.path.join(app.config["UPLOAD_FOLDER"], directory, filename)
+
                         if os.path.exists(file_path):
                             flash(f"Error: Image with filename '{filename}' already exists", "error")
                             return redirect(url_for("admin_table", table_name=table_name))
+
                         if table_name == "images":
                             os.makedirs(os.path.join(app.config["UPLOAD_FOLDER"], directory), exist_ok=True)
                             column_data["filename"] = filename
@@ -154,9 +167,11 @@ def admin_table(table_name):
                             except sqlalchemy.exc.IntegrityError:
                                 flash(f"Error: Image with filename '{filename}' already exists", "error")
                                 return redirect(url_for("admin_table", table_name=table_name))
+
                         image.save(file_path)
                         flash(f"Info: Uploaded file '{filename}'", "info")
                         image_is_uploaded = True
+
                 for key, value in request.form.items():
                     match key:
                         case "action":
@@ -165,6 +180,7 @@ def admin_table(table_name):
                             column_data[key] = bcrypt.generate_password_hash(value).decode("utf-8")
                         case _:
                             column_data[key] = value
+
                 try:
                     crud.add_table_row(table_name, column_data)
                     flash(f"Success: Added row ({len(crud.get_table_rows(table_name))}) to table '{table_name}'", "success")
@@ -174,16 +190,22 @@ def admin_table(table_name):
                         filename = secure_filename(image.filename)
                         directory = request.form["directory"] if table_name == "images" else ""
                         file_path = os.path.join(app.config["UPLOAD_FOLDER"], directory, filename)
+
                         if os.path.exists(file_path):
                             os.remove(file_path)
                             flash(f"Info: Deleted file '{filename}'", "info")
+
                         image_row = crud.search_table_row("images", {"filename": filename, "directory": directory})
                         crud.delete_table_row("images", image_row["id"])
+
                     flash(f"Error: {e}", "error")
+
                 return redirect(url_for("admin_table", table_name=table_name))
+
             case "edit":
                 row_id = int(request.form.get("row_id"))
                 return redirect(url_for("admin_edit", table_name=table_name, row_id=row_id))
+
             case "delete":
                 row_id = int(request.form.get("row_id"))
                 if table_name == "images":
@@ -200,8 +222,10 @@ def admin_table(table_name):
                         flash(f"Info: Deleted file '{filename}'", "info")
                 crud.delete_table_row(table_name, row_id)
                 flash(f"Success: Deleted row ({row_id}) from table '{table_name}'", "success")
+
             case "cancel":
                 return redirect(url_for("admin"))
+
     table = crud.get_all_tables()[table_name]
     return render_template("admin_table.html", table_name=table_name, table=table)
 
@@ -214,6 +238,7 @@ def admin_edit(table_name, row_id):
     except ValueError:
         flash("Error: ID must be integer", "error")
         return redirect(url_for("admin_table", table_name=table_name))
+
     if request.method == "POST":
         action = request.form.get("action")
         match action:
@@ -245,7 +270,9 @@ def admin_edit(table_name, row_id):
                     flash(f"Error: {e}", "error")
                     return redirect(url_for("admin_table", table_name=table_name))
                 return redirect(url_for("admin_table", table_name=table_name))
+
             case "cancel":
                 return redirect(url_for("admin_table", table_name=table_name))
+
     table = crud.get_all_tables()[table_name]
     return render_template("admin_edit.html", table_name=table_name, table=table, row_id=row_id)
