@@ -16,9 +16,8 @@ def setup():
         os.makedirs(app.config["UPLOAD_FOLDER"] + "/foundation", exist_ok=True)
         db_file = "instance/" + app.config["SQLALCHEMY_DATABASE_URI"].split("///")[1]
 
-        db.create_all()
-
         if not os.path.exists(db_file):
+            db.create_all()
             load_dotenv()
             username = os.getenv("USERNAME")
             password = os.getenv("PASSWORD")
@@ -38,3 +37,9 @@ def setup():
                 for key, row_data in table_data.items():
                     for column_data in row_data:
                         crud.add_table_row(key, column_data)
+        else:
+            db.create_all()
+
+
+if __name__ == "__main__":
+    setup()
