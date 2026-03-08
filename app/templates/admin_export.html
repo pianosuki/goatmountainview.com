@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Database | Editor Melinda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Header -->
+        <div class="header">
+            <h1>💾 Export Database</h1>
+            <div class="header-actions">
+                <a href="{{ url_for('admin') }}" class="btn btn-back">← Dashboard</a>
+                <form method="POST" action="{{ url_for('logout') }}" style="display: inline;">
+                    <button type="submit" class="btn" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white;">🚪 Logout</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Export Card -->
+        <div class="card">
+            <div class="card-header">
+                📥 Download Database Backup
+            </div>
+            <div class="card-body">
+                <div class="info-box">
+                    <strong>💡 What gets exported:</strong><br>
+                    All your goats, soaps, images, books, and inquiries will be saved to a JSON file.
+                </div>
+
+                <form method="POST" action="{{ url_for('admin_export') }}" style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 4em; margin-bottom: 20px;">📦</div>
+                    
+                    <h2 style="margin-bottom: 15px; color: #333;">Backup Your Data</h2>
+                    
+                    <p style="color: #666; margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                        Download a complete backup of your database. This includes all goats, soaps, photos metadata, and more.
+                        Keep this file safe - you can use it to restore your data later!
+                    </p>
+
+                    <button type="submit" class="btn btn-submit" style="max-width: 300px; margin: 0 auto;">
+                        ⬇️ Download Backup
+                    </button>
+
+                    <div class="help-text mt-20" style="text-align: left; max-width: 500px; margin: 30px auto 0;">
+                        <strong>📋 What's included:</strong>
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li>📷 All images (metadata and file paths)</li>
+                            <li>🐐 All goats (does, foundation, adoptions)</li>
+                            <li>🧼 All soap products</li>
+                            <li>📚 All books</li>
+                            <li>✉️ All inquiries/messages</li>
+                        </ul>
+                        
+                        <p style="margin-top: 15px; color: #dc3545; font-size: 0.9em;">
+                            <strong>⚠️ Note:</strong> User accounts are exported but passwords are NOT included for security. When importing, your current users and passwords will remain unchanged.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Import Section -->
+        <div class="card" style="margin-top: 30px;">
+            <div class="card-header" style="background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%); color: #333;">
+                📤 Restore from Backup
+            </div>
+            <div class="card-body">
+                <div class="info-box" style="background: #fff3cd; border-left-color: #ff9800;">
+                    <strong>⚠️ Warning:</strong><br>
+                    Importing will replace all current data with the backup data. Make sure you have a recent backup before proceeding!
+                </div>
+
+                <form method="POST" action="{{ url_for('admin_import') }}" enctype="multipart/form-data" style="padding: 30px 20px;">
+                    <div class="form-group">
+                        <label for="backup-file">Select Backup File (.json)</label>
+                        <input type="file" name="file" id="backup-file" accept=".json" required style="margin-top: 10px;">
+                    </div>
+
+                    <button type="submit" class="btn" style="background: #ff9800; color: white; margin-top: 20px;">
+                        🔄 Restore from Backup
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

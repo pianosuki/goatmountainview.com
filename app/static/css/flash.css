@@ -1,44 +1,63 @@
+/* Flash Messages */
 .flash-messages {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    min-width: 25%;
-    max-width: 100%;
-    text-align: center;
-    opacity: 0.8;
-    z-index: 9999;
-    text-shadow: 1px 1px 4px rgba(10, 10, 10, 0.2);
+    top: 20px;
+    right: 20px;
+    min-width: 300px;
+    max-width: 500px;
+    z-index: 10000;
 }
 
 .flash-message {
-    padding: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px rgba(10, 10, 10, 0.4);
-    border: 1px solid rgba(180, 180, 180, 0.4);
+    font-weight: 500;
+    font-size: 0.95em;
+    animation: slideInRight 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: none;
 }
 
-.flash-info {
-    background-color: #d6e9f9;
-    color: #31708f;
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .flash-success {
-    background-color: #dff0d8;
-    color: #3c763d;
-}
-
-.flash-warning {
-    background-color: #fcf8e3;
-    color: #8a6d3b;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    border-left: 4px solid #28a745;
 }
 
 .flash-error {
-    background-color: #f2dede;
-    color: #a94442;
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    border-left: 4px solid #dc3545;
 }
 
-.flash-default {
-    background-color: #dedede;
-    color: #424242;
+.flash-info {
+    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+    color: #0c5460;
+    border-left: 4px solid #17a2b8;
+}
+
+.flash-warning {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%);
+    color: #856404;
+    border-left: 4px solid #ffc107;
+}
+
+@media (max-width: 600px) {
+    .flash-messages {
+        left: 20px;
+        right: 20px;
+        min-width: auto;
+    }
 }

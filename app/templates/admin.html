@@ -1,40 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin | Editor Melinda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Editor Melinda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
 </head>
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% set counter = messages|length %}
-                {% for category, message in messages|reverse %}
-                    {% set index = counter - loop.index %}
-                    <div class="flash-message flash-{{ category }}">{{ message }} {% if messages|length > 1 %}({{ index }}){% endif %}</div>
-                {% endfor %}
+    <div class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Header -->
+        <div class="header">
+            <h1>🖥️ Admin Dashboard</h1>
+            <div class="header-actions">
+                <a href="{{ url_for('admin_export') }}" class="btn btn-back" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white;">💾 Export/Import</a>
+                <form method="POST" action="{{ url_for('logout') }}" style="display: inline;">
+                    <button type="submit" class="btn" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white;">🚪 Logout</button>
+                </form>
+                <a href="{{ url_for('index') }}" class="btn btn-home">🏠 View Site</a>
             </div>
-        {% endif %}
-    {% endwith %}
-    <div class="admin-panel">
-        <h2>Table List</h2>
-        <ul class="table-list">
-            {% for table_name in tables %}
-                <li class="table-item">
-                    <form method="POST" action="{{ url_for('admin') }}">
-                        <label for="table-name">{{ table_name|title }}</label>
-                        <input type="hidden" name="action" value="edit">
-                        <input type="hidden" id="table-name" name="table_name" value="{{ table_name }}">
-                        <button type="submit" class="edit-btn">Edit</button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-        <form method="POST" action="{{ url_for('admin') }}">
-            <input type="hidden" name="action" value="cancel">
-            <button type="submit" class="cancel-btn">Back</button>
-        </form>
+        </div>
+
+        <!-- Welcome Box -->
+        <div class="welcome-box">
+            <h2>👋 Hello, {{ current_user.username }}!</h2>
+            <p>Manage your website content easily and efficiently</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="number">{{ stats.soaps }}</div>
+                <div class="label">🧼 Soaps</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">{{ stats.does }}</div>
+                <div class="label">🐐 Does</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">{{ stats.foundation }}</div>
+                <div class="label">🏛️ Foundation Goats</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">{{ stats.images }}</div>
+                <div class="label">📷 Photos</div>
+            </div>
+        </div>
+
+        <!-- Main Actions -->
+        <div class="quick-actions">
+            <div class="quick-action-card" onclick="navigateTo('soaps')">
+                <span class="icon">🧼</span>
+                <h3>Manage Soaps</h3>
+                <p>Update your soap product listings with ingredients</p>
+            </div>
+            <div class="quick-action-card" onclick="navigateTo('does')">
+                <span class="icon">🐐</span>
+                <h3>Manage Does</h3>
+                <p>Add or edit your female goats with photos and descriptions</p>
+            </div>
+            <div class="quick-action-card" onclick="navigateTo('foundation')">
+                <span class="icon">🏛️</span>
+                <h3>Foundation Goats</h3>
+                <p>Manage your breeding program foundation stock</p>
+            </div>
+            <div class="quick-action-card" onclick="navigateTo('images')">
+                <span class="icon">📷</span>
+                <h3>Photo Library</h3>
+                <p>Upload and organize your photo collection</p>
+            </div>
+        </div>
+
+        <!-- Other Tables -->
+        <div class="tables-grid">
+            <form method="POST" action="{{ url_for('admin') }}" style="display: contents;">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="table_name" value="adoptions">
+                <button type="submit" class="table-btn">
+                    <span>🏠</span>
+                    Adoptions
+                </button>
+            </form>
+            <form method="POST" action="{{ url_for('admin') }}" style="display: contents;">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="table_name" value="books_hs">
+                <button type="submit" class="table-btn">
+                    <span>📚</span>
+                    Books (HS)
+                </button>
+            </form>
+            <form method="POST" action="{{ url_for('admin') }}" style="display: contents;">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="table_name" value="books_st">
+                <button type="submit" class="table-btn">
+                    <span>📖</span>
+                    Books (ST)
+                </button>
+            </form>
+            <form method="POST" action="{{ url_for('admin') }}" style="display: contents;">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="table_name" value="inquiries">
+                <button type="submit" class="table-btn">
+                    <span>✉️</span>
+                    Messages
+                </button>
+            </form>
+        </div>
+
+        <!-- Help Section -->
+        <div class="help-section">
+            <h3>💡 Quick Tips</h3>
+            <ul>
+                <li>Click on any section above to start managing that content</li>
+                <li>When adding a goat or soap, you can upload a photo directly</li>
+                <li>Use the Photo Library to organize your images</li>
+                <li>All changes are saved immediately - no need to publish</li>
+                <li>For best results, use clear JPG or PNG photos</li>
+            </ul>
+        </div>
     </div>
+
+    <!-- External JavaScript -->
+    <script src="{{ url_for('static', filename='js/admin-dashboard.js') }}"></script>
 </body>
 </html>

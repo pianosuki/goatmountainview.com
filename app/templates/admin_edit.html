@@ -1,67 +1,195 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin | Editor Melinda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Record | Editor Melinda</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
 </head>
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-messages">
-                {% set counter = messages|length %}
-                {% for category, message in messages|reverse %}
-                    {% set index = counter - loop.index %}
-                    <div class="flash-message flash-{{ category }}">{{ message }} {% if messages|length > 1 %}({{ index }}){% endif %}</div>
-                {% endfor %}
+    <div class="container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Header -->
+        <div class="header">
+            <h1>✏️ Edit {{ table_name|replace('_', ' ')|title }}</h1>
+            <div class="header-actions">
+                <a href="{{ url_for('admin_table', table_name=table_name) }}" class="btn btn-back">← Back</a>
+                <form method="POST" action="{{ url_for('logout') }}" style="display: inline;">
+                    <button type="submit" class="btn" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); color: white;">🚪 Logout</button>
+                </form>
             </div>
-        {% endif %}
-    {% endwith %}
-    <div class="admin-panel">
-        <h2>Editing table: <b>{{ table_name|title }}</b></h2>
-        <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}" enctype="multipart/form-data" class="input-form">
-            <table>
-                <thead>
-                    <tr>
-                        {% for column in table["table_columns"] %}
-                            <th>{{ column|title }}</th>
-                        {% endfor %}
-                        <th>Edit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr>
-                            {% for column in table["table_columns"] %}
-                                {% set current_value = get_table_row_column(table_name, row_id, column) %}
-                                <td>
-                                    {% if column == "id" %}
-                                        {% if table["table_rows"]|length > 0%}
-                                            <p>{{ row_id }}</p>
-                                        {% else %}
-                                            <p>1</p>
-                                        {% endif %}
-                                    {% elif column == "description" or column == "comment" or column == "ingredients" %}
-                                        <textarea name="{{ column }}" placeholder="{{ column }}" rows="3" cols="50" {% if not column_is_nullable(table_name, column) %}required{% endif %}>{{ current_value }}</textarea>
-                                    {% elif column == "date" %}
-                                        <input type="datetime-local" name="{{ column }}" value="{{ current_value }}">
-                                    {% else %}
-                                        {% if current_value is none %} {% set current_value = "" %} {% endif %}
-                                        <input type="text" name="{{ column }}" placeholder="{{ column }}" value="{{ current_value if column != 'password' else '' }}" {% if not column_is_nullable(table_name, column) %}required{% endif %}>
+        </div>
+
+        <!-- Edit Card -->
+        <div class="card">
+            <div class="card-header yellow">
+                📝 Edit Information
+            </div>
+            <div class="card-body">
+                <div class="info-box">
+                    <strong>💡 Tip:</strong> Changes appear on the website immediately after saving!
+                </div>
+
+                <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}" enctype="multipart/form-data">
+                    {% set user_fields = get_user_fields(table_name) %}
+                    {% set existing_image_id = get_image_id_for_record(table_name, row_id) %}
+                    
+                    {% for field in user_fields %}
+                        {% if field.type == "image" %}
+                            <div class="image-edit-section">
+                                <h4>📷 Current Photo</h4>
+                                {% if existing_image_id %}
+                                    {% set img = get_image_by_id(existing_image_id) %}
+                                    {% if img %}
+                                        <img src="{{ get_image_url(img) }}" alt="Current" class="current-image-preview">
+                                        <p style="margin-top: 10px; color: #666;"><strong>Filename:</strong> {{ img.filename }}</p>
                                     {% endif %}
-                                </td>
-                            {% endfor %}
-                            <td>
-                                <input type="hidden" name="action" value="edit">
-                                <button type="submit" class="edit-btn">Edit</button>
-                            </td>
-                        </tr>
-                </tbody>
-            </table>
-        </form>
-        <form method="POST" action="{{ url_for('admin_edit', table_name=table_name, row_id=row_id) }}">
-            <input type="hidden" name="action" value="cancel">
-            <button type="submit" class="cancel-btn">Cancel</button>
-        </form>
+                                {% else %}
+                                    <div class="image-placeholder" style="width: 200px; height: 200px;">📷</div>
+                                    <p style="margin-top: 10px; color: #999;">No photo selected</p>
+                                {% endif %}
+                                
+                                <h4 style="margin-top: 25px;">🔄 Change Photo</h4>
+                                
+                                <!-- Upload New -->
+                                <div class="file-upload-wrapper" id="file-wrapper">
+                                    <input type="file" name="image" id="image-upload" accept=".jpg, .jpeg, .png" onchange="handleFileSelect(this)">
+                                    <div class="file-upload-icon">📁</div>
+                                    <div class="file-upload-text">Upload new photo</div>
+                                    <div class="file-upload-hint">JPG, JPEG, PNG - Replaces current photo</div>
+                                    <img id="preview" class="preview-image" alt="Preview">
+                                </div>
+                                
+                                <div style="text-align: center; margin: 15px 0; color: #999;">— OR —</div>
+                                
+                                <!-- Select from Library Button -->
+                                <button type="button" class="btn btn-select" onclick="openImageBrowser()" style="width: 100%;">
+                                    📷 Choose from Photo Library
+                                </button>
+                                
+                                <!-- Selected Image Display -->
+                                <div id="selected-image-display" class="{% if existing_image_id %}{% else %}hidden{% endif %}" style="margin-top: 15px; padding: 15px; background: #f0fff4; border: 2px solid #28a745; border-radius: 8px;">
+                                    {% if existing_image_id %}
+                                        {% set img = get_image_by_id(existing_image_id) %}
+                                        {% if img %}
+                                            <img src="{{ get_image_url(img) }}" alt="Selected" class="image-preview" style="width: 100px; height: 100px;">
+                                            <p style="margin-top: 10px; color: #28a745; font-weight: 600;">{{ img.filename }}</p>
+                                        {% endif %}
+                                    {% endif %}
+                                    <button type="button" class="btn-sm btn-delete" onclick="clearSelectedImage()" style="margin-top: 10px;">🗑️ Remove Selection</button>
+                                </div>
+                                
+                                <input type="hidden" name="image_id" id="selected-image-id" value="{{ existing_image_id if existing_image_id else '' }}">
+                                
+                                <div class="help-text mt-20">
+                                    <strong>Note:</strong> Uploading a new photo will replace the current one. Or choose an existing photo from your library above.
+                                </div>
+                            </div>
+                            
+                        {% elif field.type == "textarea" %}
+                            {% set current_value = get_field_value(table_name, row_id, field.name) %}
+                            <div class="form-group">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                <textarea name="{{ field.name }}" id="{{ field.name }}" placeholder="Enter {{ field.label|lower }}...">{{ current_value if current_value else '' }}</textarea>
+                            </div>
+                            
+                        {% elif field.type == "url" %}
+                            {% set current_value = get_field_value(table_name, row_id, field.name) %}
+                            <div class="form-group">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                <input type="url" name="{{ field.name }}" id="{{ field.name }}" placeholder="https://..." value="{{ current_value if current_value else '' }}">
+                            </div>
+                            
+                        {% elif field.type == "number" %}
+                            {% set current_value = get_field_value(table_name, row_id, field.name) %}
+                            <div class="form-group">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                <input type="number" step="0.1" name="{{ field.name }}" id="{{ field.name }}" value="{{ current_value if current_value else '' }}">
+                            </div>
+                            
+                        {% else %}
+                            {% set current_value = get_field_value(table_name, row_id, field.name) %}
+                            <div class="form-group">
+                                <label for="{{ field.name }}">{{ field.label }}</label>
+                                <input type="text" name="{{ field.name }}" id="{{ field.name }}" value="{{ current_value if current_value else '' }}">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="form-actions">
+                        <input type="hidden" name="action" value="edit">
+                        <button type="submit" class="btn-submit">💾 Save Changes</button>
+                        <button type="button" class="btn btn-cancel" onclick="window.history.back()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <!-- Image Browser Modal -->
+    <div id="image-browser-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📷 Photo Library</h3>
+                <button class="modal-close" onclick="closeImageBrowser()">&times;</button>
+            </div>
+            
+            <!-- Navigation -->
+            <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <!-- Back Button (only shows in subfolder) -->
+                <button type="button" id="back-button" class="btn btn-back" onclick="goBack()" style="display: none;">
+                    ← Back
+                </button>
+                
+                <!-- Root Button -->
+                <button type="button" class="btn btn-back" onclick="loadImages('')" id="root-button">
+                    🏠 Root
+                </button>
+                
+                <!-- Current Folder Display -->
+                <span id="current-folder-display" style="color: #666; font-size: 0.9em; padding: 5px 10px; background: #f8f9fa; border-radius: 5px;">
+                    📁 Root
+                </span>
+            </div>
+            
+            <!-- Folders Grid -->
+            <div id="folders-container" style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                <h4 style="margin-bottom: 10px; color: #667eea; font-size: 0.95em;">📁 Folders</h4>
+                <div id="folders-list" style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <!-- Folders loaded dynamically -->
+                </div>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="hidden" style="text-align: center; padding: 40px;">
+                <div style="font-size: 2em;">⏳</div>
+                <p style="color: #666;">Loading photos...</p>
+            </div>
+            
+            <!-- Images Grid -->
+            <div id="images-grid" class="image-grid" style="max-height: 500px;">
+                <!-- Images loaded dynamically -->
+            </div>
+            
+            <!-- Modal Footer -->
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #e0e0e0; text-align: right;">
+                <button type="button" class="btn btn-cancel" onclick="closeImageBrowser()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/admin-upload.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin-image-browser.js') }}"></script>
 </body>
 </html>
