@@ -13,4 +13,4 @@ RUN mkdir -p /app/app/static/images/uploads/soap \
     /app/app/static/images/uploads/foundation \
     /app/instance
 
-CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:8000", "--pythonpath", "/app"]
+CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:80", "--pythonpath", "/app"]
