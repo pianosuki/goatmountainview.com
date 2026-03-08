@@ -1,8 +1,12 @@
 # Python virtual environment
 .venv/*
+__pycache__
 
 # Pycharm project
 .idea/*
+
+# VSCode
+.vscode
 
 # Dotenv
 .env
