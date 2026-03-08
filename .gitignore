@@ -11,5 +11,6 @@ __pycache__
 # Dotenv
 .env
 
-# Database
+# Database & uploads
 instance/*
+app/static/images/uploads/*
