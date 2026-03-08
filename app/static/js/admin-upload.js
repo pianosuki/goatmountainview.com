@@ -22,14 +22,23 @@ function initImageUpload(wrapperId, inputId, previewId) {
 
 /**
  * Handle file selection with size checking
+ * Can be called with either (wrapperId, inputId, previewId) or with just the input element
  */
 function handleFileSelect(wrapperId, inputId, previewId) {
+    // Support being called with just the input element (handleFileSelect(this))
+    if (arguments.length === 1 && arguments[0].tagName === 'INPUT') {
+        const input = arguments[0];
+        wrapperId = 'file-wrapper';
+        inputId = input.id;
+        previewId = 'preview';
+    }
+    
     const wrapper = document.getElementById(wrapperId);
     const preview = document.getElementById(previewId);
     const input = document.getElementById(inputId);
-    
+
     if (!wrapper || !preview || !input) return;
-    
+
     const text = wrapper.querySelector('.file-upload-text');
     const icon = wrapper.querySelector('.file-upload-icon');
     const hint = wrapper.querySelector('.file-upload-hint');
@@ -43,14 +52,14 @@ function handleFileSelect(wrapperId, inputId, previewId) {
         const file = input.files[0];
         const fileSizeKB = (file.size / 1024).toFixed(1);
         const fileSizeMB = (file.size / 1024 / 1024).toFixed(2);
-        
+
         // Check if file is over 500KB
         if (file.size > 500 * 1024) {
             // Show compression dialog
             showCompressionDialog(file, fileSizeKB, fileSizeMB, wrapperId, inputId, previewId);
             return;
         }
-        
+
         // File is under 500KB, proceed normally
         showFileSelected(file, wrapper, text, icon, hint, preview, fileSizeKB);
     }
@@ -81,10 +90,16 @@ function showFileSelected(file, wrapper, text, icon, hint, preview, fileSizeKB) 
  * Show compression dialog for large files
  */
 function showCompressionDialog(file, fileSizeKB, fileSizeMB, wrapperId, inputId, previewId) {
+    // Remove any existing dialog first
+    const existingDialog = document.getElementById('compression-dialog');
+    if (existingDialog) {
+        existingDialog.remove();
+    }
+    
     pendingFile = { file, wrapperId, inputId, previewId };
-    
+
     const sizeDisplay = fileSizeKB > 1024 ? `${fileSizeMB} MB` : `${fileSizeKB} KB`;
-    
+
     const dialog = document.createElement('div');
     dialog.id = 'compression-dialog';
     dialog.className = 'modal-overlay';
@@ -99,14 +114,14 @@ function showCompressionDialog(file, fileSizeKB, fileSizeMB, wrapperId, inputId,
                     📁 ${file.name}<br>
                     Size: ${sizeDisplay} (over 500KB limit)
                 </p>
-                
+
                 <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #ffc107;">
                     <strong>💡 Recommendation:</strong><br>
                     For best website performance, images should be under 500KB.
                 </div>
-                
+
                 <p style="margin-bottom: 20px; color: #666;">What would you like to do?</p>
-                
+
                 <div style="display: flex; flex-direction: column; gap: 10px;">
                     <button type="button" class="btn btn-submit" onclick="compressAndUpload()" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
                         🗜️ Compress & Upload (Recommended)
@@ -121,7 +136,7 @@ function showCompressionDialog(file, fileSizeKB, fileSizeMB, wrapperId, inputId,
             </div>
         </div>
     `;
-    
+
     document.body.appendChild(dialog);
 }
 
@@ -213,7 +228,7 @@ function showCompressedFile(compressedFile, wrapper, text, icon, hint, preview, 
     if (icon) icon.style.display = 'none';
     if (hint) hint.style.display = 'none';
     wrapper.classList.add('has-file');
-    
+
     // Create preview from compressed file
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -221,12 +236,12 @@ function showCompressedFile(compressedFile, wrapper, text, icon, hint, preview, 
         preview.classList.add('show');
     };
     reader.readAsDataURL(compressedFile);
-    
+
     // Create a new FileList-like object
     const dt = new DataTransfer();
     dt.items.add(compressedFile);
     input.files = dt.files;
-    
+
     pendingFile = null;
 }
 
@@ -235,21 +250,21 @@ function showCompressedFile(compressedFile, wrapper, text, icon, hint, preview, 
  */
 function uploadAsIs() {
     if (!pendingFile) return;
-    
+
     const { file, wrapperId, inputId, previewId } = pendingFile;
     const dialog = document.getElementById('compression-dialog');
     if (dialog) dialog.remove();
-    
+
     const input = document.getElementById(inputId);
     const wrapper = document.getElementById(wrapperId);
     const preview = document.getElementById(previewId);
-    
+
     if (!wrapper || !preview || !input) return;
-    
+
     const text = wrapper.querySelector('.file-upload-text');
     const icon = wrapper.querySelector('.file-upload-icon');
     const hint = wrapper.querySelector('.file-upload-hint');
-    
+
     const fileSizeKB = (file.size / 1024).toFixed(1);
     text.textContent = `${file.name} (${fileSizeKB} KB - large file)`;
     text.style.fontSize = '0.85em';
@@ -259,16 +274,16 @@ function uploadAsIs() {
     }
     if (hint) hint.style.display = 'none';
     wrapper.classList.add('has-file');
-    
+
     const reader = new FileReader();
     reader.onload = function(e) {
         preview.src = e.target.result;
         preview.classList.add('show');
     };
     reader.readAsDataURL(file);
-    
+
     // File is already in input, no need to update
-    
+
     pendingFile = null;
 }
 
@@ -278,20 +293,20 @@ function uploadAsIs() {
 function cancelUpload() {
     const dialog = document.getElementById('compression-dialog');
     if (dialog) dialog.remove();
-    
+
     if (!pendingFile) return;
-    
+
     const { inputId, wrapperId } = pendingFile;
     const input = document.getElementById(inputId);
     const wrapper = document.getElementById(wrapperId);
-    
+
     if (input) input.value = '';
-    
+
     if (wrapper) {
         const text = wrapper.querySelector('.file-upload-text');
         const icon = wrapper.querySelector('.file-upload-icon');
         const hint = wrapper.querySelector('.file-upload-hint');
-        
+
         text.textContent = 'Click or drag to upload';
         text.style.fontSize = '';
         if (icon) {
@@ -301,16 +316,15 @@ function cancelUpload() {
         if (hint) hint.style.display = 'block';
         wrapper.classList.remove('has-file');
     }
-    
+
     pendingFile = null;
 }
 
 /**
  * Initialize all image upload forms on page load
+ * Note: Forms use inline onchange handlers, so no initialization needed here
  */
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize main upload form (admin_table.html - Images page)
-    initImageUpload('file-wrapper', 'image-upload', 'preview');
-    
-    // Note: For edit forms, the IDs are the same so they'll be initialized automatically
+    // Forms use inline handleFileSelect(this) calls
+    // No additional initialization required
 });

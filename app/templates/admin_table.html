@@ -36,8 +36,25 @@
             <!-- Table Section -->
             <div class="card">
                 <div class="card-header">
-                    📊 Records ({{ table["table_rows"]|length }})
+                    📊 Records ({{ table["table_rows"]|length }}{% if table.get("pagination") %} of {{ table["pagination"]["total"] }}{% endif %})
                 </div>
+                
+                {% if table.get("pagination") and table["pagination"]["pages"] > 1 %}
+                <div class="pagination-controls" style="padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e0e0;">
+                    <div style="color: #666; font-size: 0.9em;">
+                        Page {{ table["pagination"]["page"] }} of {{ table["pagination"]["pages"] }}
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        {% if table["pagination"]["page"] > 1 %}
+                        <a href="?page={{ table["pagination"]["page"] - 1 }}&per_page={{ table["pagination"]["per_page"] }}" class="btn btn-back">← Previous</a>
+                        {% endif %}
+                        {% if table["pagination"]["page"] < table["pagination"]["pages"] %}
+                        <a href="?page={{ table["pagination"]["page"] + 1 }}&per_page={{ table["pagination"]["per_page"] }}" class="btn btn-back">Next →</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                
                 <div class="table-responsive">
                     {% if table["table_rows"]|length > 0 %}
                         <table>
@@ -51,7 +68,7 @@
                             </thead>
                             <tbody>
                                 {% for row in table["table_rows"] %}
-                                <tr>
+                                <tr id="row-{{ row[0] }}">
                                     {% for column_index, column in enumerate(get_display_columns(table_name)) %}
                                         <td>
                                             {% if column == "image" or column == "Image" %}
@@ -88,11 +105,7 @@
                                                 <input type="hidden" name="row_id" value="{{ row[0] }}">
                                                 <button type="submit" class="btn-sm btn-edit">✏️ Edit</button>
                                             </form>
-                                            <form method="POST" action="{{ url_for('admin_table', table_name=table_name) }}" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this?');">
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="row_id" value="{{ row[0] }}">
-                                                <button type="submit" class="btn-sm btn-delete">🗑️ Delete</button>
-                                            </form>
+                                            <button type="button" class="btn-sm btn-delete" onclick="deleteRow('{{ row[0] }}', '{{ table_name }}')">🗑️ Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -289,5 +302,6 @@
     <!-- External JavaScript -->
     <script src="{{ url_for('static', filename='js/admin-upload.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admin-image-browser.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin-table.js') }}"></script>
 </body>
 </html>

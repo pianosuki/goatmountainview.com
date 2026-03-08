@@ -59,41 +59,40 @@
                                     <div class="image-placeholder" style="width: 200px; height: 200px;">📷</div>
                                     <p style="margin-top: 10px; color: #999;">No photo selected</p>
                                 {% endif %}
-                                
+
                                 <h4 style="margin-top: 25px;">🔄 Change Photo</h4>
-                                
+
                                 <!-- Upload New -->
                                 <div class="file-upload-wrapper" id="file-wrapper">
                                     <input type="file" name="image" id="image-upload" accept=".jpg, .jpeg, .png" onchange="handleFileSelect(this)">
                                     <div class="file-upload-icon">📁</div>
                                     <div class="file-upload-text">Upload new photo</div>
-                                    <div class="file-upload-hint">JPG, JPEG, PNG - Replaces current photo</div>
+                                    <div class="file-upload-hint">JPG, JPEG, PNG</div>
                                     <img id="preview" class="preview-image" alt="Preview">
                                 </div>
-                                
+
                                 <div style="text-align: center; margin: 15px 0; color: #999;">— OR —</div>
-                                
+
                                 <!-- Select from Library Button -->
                                 <button type="button" class="btn btn-select" onclick="openImageBrowser()" style="width: 100%;">
                                     📷 Choose from Photo Library
                                 </button>
-                                
+
                                 <!-- Selected Image Display -->
-                                <div id="selected-image-display" class="{% if existing_image_id %}{% else %}hidden{% endif %}" style="margin-top: 15px; padding: 15px; background: #f0fff4; border: 2px solid #28a745; border-radius: 8px;">
-                                    {% if existing_image_id %}
-                                        {% set img = get_image_by_id(existing_image_id) %}
-                                        {% if img %}
-                                            <img src="{{ get_image_url(img) }}" alt="Selected" class="image-preview" style="width: 100px; height: 100px;">
-                                            <p style="margin-top: 10px; color: #28a745; font-weight: 600;">{{ img.filename }}</p>
-                                        {% endif %}
-                                    {% endif %}
-                                    <button type="button" class="btn-sm btn-delete" onclick="clearSelectedImage()" style="margin-top: 10px;">🗑️ Remove Selection</button>
+                                <div id="selected-image-display" class="selected-image-box {% if existing_image_id %}{% else %}hidden{% endif %}" style="margin-top: 15px; padding: 15px; background: #f0fff4; border: 2px solid #28a745; border-radius: 8px;">
+                                    <div class="selected-image-content" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                                        <img id="selected-image-preview" src="{{ get_image_url(get_image_by_id(existing_image_id)) if existing_image_id else '' }}" alt="Selected" class="image-preview" style="width: 150px; height: 150px; object-fit: cover; border-radius: 8px;">
+                                        <p id="selected-image-name" style="color: #28a745; font-weight: 600; text-align: center; margin: 0;">
+                                            {{ get_image_by_id(existing_image_id).filename if existing_image_id else 'No image selected' }}
+                                        </p>
+                                        <button type="button" class="btn-sm btn-delete" onclick="clearSelectedImage()" style="margin-top: 5px;">🗑️ Remove Selection</button>
+                                    </div>
                                 </div>
-                                
+
                                 <input type="hidden" name="image_id" id="selected-image-id" value="{{ existing_image_id if existing_image_id else '' }}">
-                                
+
                                 <div class="help-text mt-20">
-                                    <strong>Note:</strong> Uploading a new photo will replace the current one. Or choose an existing photo from your library above.
+                                    <strong>💡 Tip:</strong> Upload a new photo or choose from your photo library above. Original photos are preserved in the gallery.
                                 </div>
                             </div>
                             
@@ -191,5 +190,6 @@
 
     <script src="{{ url_for('static', filename='js/admin-upload.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admin-image-browser.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admin-edit.js') }}"></script>
 </body>
 </html>

@@ -23,13 +23,22 @@ def get_all_tables() -> dict:
 
 def get_table(table_name: str) -> dict:
     """Get information about a specific table."""
-    metadata = db.MetaData()
-    metadata.reflect(bind=db.engine)
-    table_obj = metadata.tables[table_name]
-    columns = [column.name for column in table_obj.columns]
-    optional_columns = [column.name for column in table_obj.columns if column.nullable]
-    rows_list = get_table_rows(table_name)
+    model_class = get_model_class(table_name)
     
+    # Use ORM model if available for better performance
+    if model_class:
+        columns = [column.name for column in model_class.__table__.columns]
+        optional_columns = [column.name for column in model_class.__table__.columns if column.nullable]
+    else:
+        # Fallback to metadata reflection
+        metadata = db.MetaData()
+        metadata.reflect(bind=db.engine)
+        table_obj = metadata.tables[table_name]
+        columns = [column.name for column in table_obj.columns]
+        optional_columns = [column.name for column in table_obj.columns if column.nullable]
+    
+    rows_list = get_table_rows(table_name)
+
     return {
         "table_name": table_name,
         "table_columns": columns,
@@ -38,8 +47,57 @@ def get_table(table_name: str) -> dict:
     }
 
 
-def get_table_rows(table_name: str) -> list:
-    """Get all rows from a table."""
+def get_table_rows(table_name: str, limit: Optional[int] = None, offset: Optional[int] = None, 
+                   order_by: Optional[str] = None, order_desc: bool = False) -> list:
+    """Get all rows from a table with optional pagination and ordering.
+    
+    Args:
+        table_name: Name of the table
+        limit: Maximum number of rows to return (for pagination)
+        offset: Number of rows to skip (for pagination)
+        order_by: Column name to order by
+        order_desc: If True, order in descending order
+    
+    Returns:
+        List of rows as lists of column values
+    """
+    model_class = get_model_class(table_name)
+    
+    # Use ORM model directly for better performance
+    if model_class:
+        columns = [column.name for column in model_class.__table__.columns]
+        query = model_class.query
+        
+        # Apply ordering if specified
+        if order_by and order_by in columns:
+            order_column = getattr(model_class, order_by)
+            if order_desc:
+                query = query.order_by(order_column.desc())
+            else:
+                query = query.order_by(order_column)
+        else:
+            # Default: order by primary key (usually 'id')
+            if hasattr(model_class, 'id'):
+                query = query.order_by(model_class.id.desc())
+        
+        # Apply pagination
+        if limit:
+            query = query.limit(limit)
+        if offset:
+            query = query.offset(offset)
+        
+        rows = query.all()
+        rows_list = [[getattr(row, column, None) for column in columns] for row in rows]
+        
+        # Mask passwords
+        for column_index, column in enumerate(columns):
+            if column == "password":
+                for row_index, row in enumerate(rows_list):
+                    rows_list[row_index][column_index] = "**********"
+        
+        return rows_list
+    
+    # Fallback to metadata reflection for unknown tables
     metadata = db.MetaData()
     metadata.reflect(bind=db.engine)
     table_obj = metadata.tables[table_name]

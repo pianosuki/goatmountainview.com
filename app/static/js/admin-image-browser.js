@@ -190,18 +190,19 @@ function renderImages(images) {
 function selectImageFromBrowser(image) {
     // Close modal
     closeImageBrowser();
-    
+
     // Clear file upload
     const fileInput = document.getElementById('image-upload');
     const wrapper = document.getElementById('file-wrapper');
-    
+    const uploadModeToggle = document.getElementById('upload-mode-toggle');
+
     if (fileInput) fileInput.value = '';
-    
+
     if (wrapper) {
         const text = wrapper.querySelector('.file-upload-text');
         const icon = wrapper.querySelector('.file-upload-icon');
         const hint = wrapper.querySelector('.file-upload-hint');
-        
+
         if (text) {
             text.textContent = 'Upload new photo';
             text.style.fontSize = '';
@@ -213,22 +214,37 @@ function selectImageFromBrowser(image) {
         if (hint) hint.style.display = 'block';
         wrapper.classList.remove('has-file');
     }
-    
+
+    // Hide upload mode toggle when no file is selected
+    if (uploadModeToggle) uploadModeToggle.classList.add('hidden');
+
     const preview = document.getElementById('preview');
     if (preview) preview.classList.remove('show');
-    
-    // Show selected image display
+
+    // Show selected image display and update content
     const selectedDisplay = document.getElementById('selected-image-display');
     const selectedPreview = document.getElementById('selected-image-preview');
     const selectedName = document.getElementById('selected-image-name');
-    
-    if (selectedDisplay) selectedDisplay.classList.remove('hidden');
-    if (selectedPreview) selectedPreview.src = image.url;
-    if (selectedName) selectedName.textContent = image.filename + (image.note ? ' - ' + image.note : '');
-    
-    // Set the hidden input
     const selectedInput = document.getElementById('selected-image-id');
-    if (selectedInput) selectedInput.value = image.id;
+
+    if (selectedDisplay) {
+        selectedDisplay.classList.remove('hidden');
+        // Add animation
+        selectedDisplay.style.animation = 'fadeIn 0.3s ease';
+    }
+    if (selectedPreview) {
+        selectedPreview.src = image.url;
+        selectedPreview.style.opacity = '0';
+        setTimeout(() => {
+            selectedPreview.style.opacity = '1';
+        }, 50);
+    }
+    if (selectedName) {
+        selectedName.textContent = image.filename + (image.note ? ' - ' + image.note : '');
+    }
+    if (selectedInput) {
+        selectedInput.value = image.id;
+    }
 }
 
 /**
@@ -237,9 +253,16 @@ function selectImageFromBrowser(image) {
 function clearSelectedImage() {
     const selectedInput = document.getElementById('selected-image-id');
     const selectedDisplay = document.getElementById('selected-image-display');
-    
+    const selectedPreview = document.getElementById('selected-image-preview');
+    const selectedName = document.getElementById('selected-image-name');
+
     if (selectedInput) selectedInput.value = '';
-    if (selectedDisplay) selectedDisplay.classList.add('hidden');
+    if (selectedDisplay) {
+        selectedDisplay.classList.add('hidden');
+        selectedDisplay.style.animation = '';
+    }
+    if (selectedPreview) selectedPreview.src = '';
+    if (selectedName) selectedName.textContent = 'No image selected';
 }
 
 /**

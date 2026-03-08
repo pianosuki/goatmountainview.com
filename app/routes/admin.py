@@ -10,7 +10,7 @@ import tempfile
 from datetime import datetime
 
 import sqlalchemy.exc
-from flask import render_template, redirect, url_for, request, flash, send_file
+from flask import render_template, redirect, url_for, request, flash, send_file, jsonify
 from flask_login import login_required
 from werkzeug.utils import secure_filename
 
@@ -222,8 +222,90 @@ def admin_table(table_name):
             case "cancel":
                 return redirect(url_for("admin"))
 
+    # Pagination support
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 50, type=int)
+    
+    # Get total count for pagination
+    model_class = crud.get_model_class(table_name)
+    if model_class:
+        total_count = model_class.query.count()
+    else:
+        table_data = crud.get_table(table_name)
+        total_count = len(table_data["table_rows"]) if table_data["table_rows"] else 0
+    
+    # Get paginated data
+    offset = (page - 1) * per_page
+    table_rows = crud.get_table_rows(table_name, limit=per_page, offset=offset)
+    
+    # Build table dict with pagination info
     table = crud.get_all_tables()[table_name]
+    table["table_rows"] = table_rows
+    table["pagination"] = {
+        "page": page,
+        "per_page": per_page,
+        "total": total_count,
+        "pages": (total_count + per_page - 1) // per_page
+    }
+    
     return render_template("admin_table.html", table_name=table_name, table=table)
+
+
+@app.route("/api/admin/<table_name>/<int:row_id>", methods=["DELETE"])
+@login_required
+def api_delete_row(table_name, row_id):
+    """API endpoint to delete a row via AJAX."""
+    try:
+        if table_name == "images":
+            image_row = crud.get_table_row(table_name, row_id)
+            filename = image_row.get("filename")
+            directory = image_row.get("directory", "")
+            file_path = os.path.join(app.config["UPLOAD_FOLDER"], directory, filename)
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                directory_path = os.path.join(app.config["UPLOAD_FOLDER"], directory)
+                if len(os.listdir(directory_path)) == 0:
+                    os.rmdir(directory_path)
+        crud.delete_table_row(table_name, row_id)
+        return jsonify({"success": True, "message": f"Deleted from '{table_name}'"})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/admin/<table_name>", methods=["GET"])
+@login_required
+def api_get_table(table_name):
+    """API endpoint to get table data with pagination."""
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get("per_page", 50, type=int)
+    search = request.args.get("search", "")
+    
+    # Get total count
+    model_class = crud.get_model_class(table_name)
+    if model_class:
+        total_count = model_class.query.count()
+    else:
+        table_data = crud.get_table(table_name)
+        total_count = len(table_data["table_rows"]) if table_data["table_rows"] else 0
+    
+    # Get paginated data
+    offset = (page - 1) * per_page
+    table_rows = crud.get_table_rows(table_name, limit=per_page, offset=offset)
+    
+    # Get column info
+    table = crud.get_all_tables()[table_name]
+    
+    return jsonify({
+        "success": True,
+        "data": table_rows,
+        "columns": table["table_columns"],
+        "pagination": {
+            "page": page,
+            "per_page": per_page,
+            "total": total_count,
+            "pages": (total_count + per_page - 1) // per_page
+        }
+    })
 
 
 @app.route("/admin/<table_name>/edit/<row_id>", methods=["GET", "POST"])
@@ -260,11 +342,15 @@ def admin_edit(table_name, row_id):
                         else:
                             column_data[field_name] = value
 
-                # Handle image upload (replace existing)
+                # Handle image upload - always creates new image record (preserves original)
                 if "image" in request.files:
                     image = request.files["image"]
                     if image and image.filename and allowed_file(image.filename):
+                        existing_image_id = crud.get_table_row_column(table_name, row_id, "image_id")
+                        existing_image = Image.query.get(existing_image_id) if existing_image_id else None
+                        
                         if table_name == "images":
+                            # Editing an image record itself - overwrite the file
                             image_row = crud.get_table_row(table_name, row_id)
                             existing_filename = image_row.get("filename")
                             existing_directory = image_row.get("directory", "")
@@ -280,21 +366,34 @@ def admin_edit(table_name, row_id):
                             image.save(file_path)
                             flash(f"Info: Photo updated", "info")
                         else:
-                            existing_image_id = crud.get_table_row_column(table_name, row_id, "image_id")
-                            if existing_image_id:
-                                existing_image = Image.query.get(existing_image_id)
-                                if existing_image:
-                                    filename = existing_image.filename
-                                    directory = existing_image.directory
-                                    file_path = os.path.join(app.config["UPLOAD_FOLDER"], directory, filename)
+                            # For soaps/does/foundation: always upload as new image (preserve original)
+                            directory = request.form.get("image_directory", "").strip()
+                            filename = secure_filename(image.filename)
+                            
+                            # Generate unique filename if needed
+                            base_name, ext = os.path.splitext(filename)
+                            counter = 1
+                            while True:
+                                test_path = os.path.join(app.config["UPLOAD_FOLDER"], directory, filename)
+                                if not os.path.exists(test_path):
+                                    break
+                                filename = f"{base_name}_{counter}{ext}"
+                                counter += 1
+                            
+                            file_path = os.path.join(app.config["UPLOAD_FOLDER"], directory, filename)
+                            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+                            image.save(file_path)
+                            
+                            # Create new image record
+                            new_image = Image(filename=filename, directory=directory)
+                            db.session.add(new_image)
+                            db.session.commit()
+                            
+                            # Update the record to point to new image
+                            column_data["image_id"] = new_image.id
+                            flash(f"Info: New photo uploaded and linked", "info")
 
-                                    if os.path.exists(file_path):
-                                        os.remove(file_path)
-
-                                    image.save(file_path)
-                                    flash(f"Info: Photo updated", "info")
-
-                # Handle image selection from library
+                # Handle image selection from library (only if no new image uploaded)
                 selected_image_id = request.form.get("image_id")
                 if selected_image_id and not ("image" in request.files and request.files["image"].filename):
                     try:
