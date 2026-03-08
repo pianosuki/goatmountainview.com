@@ -31,7 +31,7 @@ def setup():
                 db.session.add(user)
                 db.session.commit()
 
-            with open("app/defaults.json", "r") as tables:
+            with open("app/defaults.json", "r", encoding="utf-8") as tables:
                 table_data = json.load(tables, object_pairs_hook=OrderedDict)
 
                 for key, row_data in table_data.items():
