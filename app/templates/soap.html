@@ -3,11 +3,7 @@
 {% block title %}Handcrafted Soap | Editor Melinda{% endblock %}
 {% block stylesheets %}
     {{ super() }}
-    <style>
-        #soap {
-            filter: drop-shadow(0px 0px 2px #ddd);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/soap.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -20,36 +16,86 @@
     </div>
     <div class="content-body">
         <div class="content-section">
-            <p>
-                Welcome to <b>Goat Mountain View Soap</b>. I make small batches of high-quality soap using simple ingredients: goat milk, tallow,
-                coconut oil, and olive oil. To create variety, I mix things up with essential oils, clays, botanicals,
-                phthalate-free fragrances, and natural colorants (mineral oxides and mica). What makes GMV soap special is
-                the use of 9% butterfat milk from our Nigerian Dwarf dairy goats. Goat milk contains many compounds that are
-                so good for your skin, such as alpha hydroxyl acids, essential fatty acids, triglycerides, vitamins A, B, C,
-                D, and E, antioxidants, and selenium.
-            </p>
-            <span class="content-section-spacer"></span>
-            <img src="/static/images/nordiska.png" width="50%">
-            <p>
-                Goat Mountain View Soap can be found at <a href="https://www.nordiskashop.com" target="_blank"><b>Nordiska</b></a> 
-                gift shop on Front Street in Poulsbo. Custom blends for Nordiska are the following: Havet (Swedish for ocean; sea salt), 
-                Blommig (floral; white magnolia), Västkusten (West Coast; coastal rain scent), Fika (coffee break; oatmeal, milk & honey),
-                and Birka (birchwood; birchwood oud scent).
-            </p>
-            <img src="/static/images/nordiska_sign.jpg" width="30%"><img src="/static/images/nordiska_display.jpg" width="30%">
+            <!-- Introduction Section -->
+            <div class="soap-intro-section">
+                <p>
+                    Welcome to <strong>Goat Mountain View Soap</strong>. I craft small batches of high-quality soap using
+                    simple, wholesome ingredients: goat milk, tallow, coconut oil, and olive oil. To create variety, I
+                    enhance my formulations with essential oils, clays, botanicals, phthalate-free fragrances, and natural
+                    colorants such as mineral oxides and mica.
+                </p>
+
+                <div class="highlight-box">
+                    <p>
+                        What makes GMV Soap special is the use of <strong>9% butterfat milk</strong> from our Nigerian Dwarf
+                        dairy goats. Goat milk contains many beneficial compounds for your skin, including alpha hydroxyl acids,
+                        essential fatty acids, triglycerides, vitamins A, B, C, D, and E, antioxidants, and selenium.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nordiska Section -->
+            <div class="nordiska-section">
+                <!-- Nordiska Logo -->
+                <div class="nordiska-logo-container">
+                    <img src="/static/images/nordiska.png" alt="Nordiska Gift Shop">
+                </div>
+
+                <!-- Nordiska Description -->
+                <div class="nordiska-description">
+                    <p style="text-align: center;">
+                        Goat Mountain View Soap can be found at
+                        <a href="https://www.nordiskashop.com" target="_blank">Nordiska</a> gift shop on Front Street in Poulsbo.<br>
+                        Custom blends for Nordiska include:
+                    </p>
+                    <p style="text-align: center; font-style: italic; color: #666; margin-top: 15px;">
+                        <strong>Havet</strong> (Swedish for ocean; sea salt) &bull;
+                        <strong>Blommig</strong> (floral; white magnolia) &bull;
+                        <strong>Västkusten</strong> (West Coast; coastal rain scent) &bull;
+                        <strong>Fika</strong> (coffee break; oatmeal, milk &amp; honey) &bull;
+                        <strong>Birka</strong> (birchwood; birchwood oud scent)
+                    </p>
+                </div>
+
+                <!-- Nordiska Gallery -->
+                <div class="nordiska-gallery">
+                    <div class="nordiska-gallery-item" onclick="openLightbox('/static/images/nordiska_sign.jpg', 'Nordiska Storefront')">
+                        <img src="/static/images/nordiska_sign.jpg" alt="Nordiska Storefront Sign">
+                        <div class="caption">Nordiska Storefront</div>
+                    </div>
+                    <div class="nordiska-gallery-item" onclick="openLightbox('/static/images/nordiska_display.jpg', 'Our Soap Display at Nordiska')">
+                        <img src="/static/images/nordiska_display.jpg" alt="Nordiska Product Display">
+                        <div class="caption">Our Soap Display at Nordiska</div>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <span class="content-section-spacer"></span>
-        <div class="content-section">
+
+        <!-- Soap Products Grid -->
+        <div class="content-section soap-products-grid">
             <div class="content-grid">
                 {% for soap in soaps %}
                     <div class="content-grid-item">
-                        <img src="/static/images/uploads/{{ soap.image.path }}" class="content-image">
+                        <img src="/static/images/uploads/{{ soap.image.path }}" class="content-image" alt="{{ soap.name }}">
                         <h3 class="h3-title">{{ soap.name }}</h3>
-                        <p>INGREDIENTS: {{ soap.ingredients }}</p>
-                        <p>Net wt. approx. {{ soap.weight }} ounces</p>
+                        <p><strong>INGREDIENTS:</strong> {{ soap.ingredients }}</p>
+                        <p><strong>Net wt.</strong> approx. {{ soap.weight }} ounces</p>
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
+
+    <!-- Lightbox Modal -->
+    <div id="nordiska-lightbox" class="nordiska-lightbox" onclick="closeLightbox(event)">
+        <div class="nordiska-lightbox-content">
+            <button class="nordiska-lightbox-close" onclick="closeLightboxBtn()">&times;</button>
+            <img id="nordiska-lightbox-img" src="" alt="Enlarged view">
+            <div id="nordiska-lightbox-caption" class="nordiska-lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/soap.js') }}"></script>
 {% endblock %}
