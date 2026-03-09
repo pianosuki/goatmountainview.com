@@ -61,7 +61,7 @@
                                         <a href="{{ book[find_item_index(books_hs['table_columns'], 'link')] }}" target="_blank">
                                             <i>{{ book[find_item_index(books_hs["table_columns"], "name")] }}</i>
                                         </a>
-                                        , ed(s). {% for editor in editors_list %} {{ editor }}{% if not loop.last %} & {% endif %} {% endfor %}
+                                        , editor(s)/author(s) {% for editor in editors_list %} {{ editor }}{% if not loop.last %} & {% endif %} {% endfor %}
                                         ({{ book[find_item_index(books_hs["table_columns"], "year")] }})
                                     </li>
                                 {% endfor %}
