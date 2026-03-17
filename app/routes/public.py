@@ -76,6 +76,12 @@ def soap():
     return render_template("soap.html", soaps=soaps_table)
 
 
+@app.route("/art")
+def art():
+    """Art studies page."""
+    return render_template("art.html")
+
+
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     """Contact form page."""

@@ -3,6 +3,7 @@
 {% block title %}Handcrafted Soap | Editor Melinda{% endblock %}
 {% block stylesheets %}
     {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lightbox.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/soap.css') }}">
 {% endblock %}
 
@@ -59,11 +60,11 @@
 
                 <!-- Nordiska Gallery -->
                 <div class="nordiska-gallery">
-                    <div class="nordiska-gallery-item" onclick="openLightbox('/static/images/nordiska_sign.jpg', 'Nordiska Storefront')">
+                    <div class="nordiska-gallery-item" data-lightbox-src="/static/images/nordiska_sign.jpg" data-lightbox-caption="Nordiska Storefront" role="button" tabindex="0">
                         <img src="/static/images/nordiska_sign.jpg" alt="Nordiska Storefront Sign">
                         <div class="caption">Nordiska Storefront</div>
                     </div>
-                    <div class="nordiska-gallery-item" onclick="openLightbox('/static/images/nordiska_display.jpg', 'Our Soap Display at Nordiska')">
+                    <div class="nordiska-gallery-item" data-lightbox-src="/static/images/nordiska_display.jpg" data-lightbox-caption="Our Soap Display at Nordiska" role="button" tabindex="0">
                         <img src="/static/images/nordiska_display.jpg" alt="Nordiska Product Display">
                         <div class="caption">Our Soap Display at Nordiska</div>
                     </div>
@@ -89,13 +90,14 @@
     </div>
 
     <!-- Lightbox Modal -->
-    <div id="nordiska-lightbox" class="nordiska-lightbox" onclick="closeLightbox(event)">
-        <div class="nordiska-lightbox-content">
-            <button class="nordiska-lightbox-close" onclick="closeLightboxBtn()">&times;</button>
-            <img id="nordiska-lightbox-img" src="" alt="Enlarged view">
-            <div id="nordiska-lightbox-caption" class="nordiska-lightbox-caption"></div>
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" type="button" data-lightbox-close>&times;</button>
+            <img id="lightbox-img" src="" alt="Enlarged view">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='js/lightbox.js') }}"></script>
     <script src="{{ url_for('static', filename='js/soap.js') }}"></script>
 {% endblock %}

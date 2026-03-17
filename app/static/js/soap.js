@@ -20,39 +20,3 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(logoImg);
     }
 });
-
-// Lightbox functions
-function openLightbox(imageSrc, caption) {
-    const lightbox = document.getElementById('nordiska-lightbox');
-    const lightboxImg = document.getElementById('nordiska-lightbox-img');
-    const lightboxCaption = document.getElementById('nordiska-lightbox-caption');
-
-    lightboxImg.src = imageSrc;
-    lightboxCaption.textContent = caption;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox(event) {
-    if (event.target === event.currentTarget) {
-        const lightbox = document.getElementById('nordiska-lightbox');
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
-
-function closeLightboxBtn() {
-    const lightbox = document.getElementById('nordiska-lightbox');
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-}
-
-// Close on Escape key
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        const lightbox = document.getElementById('nordiska-lightbox');
-        if (lightbox.classList.contains('active')) {
-            closeLightboxBtn();
-        }
-    }
-});

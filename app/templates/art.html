@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Art Studies | Editor Melinda{% endblock %}
+{% block stylesheets %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lightbox.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/art.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="content-header art-header">
+        <div class="content-header-container">
+            <div class="content-header-item art-header-text">
+                <h2>Art Studies</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut magna massa. Vivamus eu dui libero.
+                </p>
+                <p class="art-header-note">Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="content-header-item art-header-frame">
+                <figure class="art-raven-frame">
+                    <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-raven.svg" data-lightbox-caption="Raven study (placeholder)">
+                        <img src="/static/images/art/placeholder-raven.svg" alt="Raven drawing placeholder">
+                        <span class="art-work-overlay">View larger</span>
+                    </button>
+                    <figcaption>(placeholder)</figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <div class="content-body">
+        <div class="content-section art-section">
+            <h2 class="art-title">Classes &amp; Studies</h2>
+            <p class="art-intro">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut magna massa.
+            </p>
+            <div class="art-classes">
+                <section class="art-class">
+                    <div class="art-class-header">
+                        <h3 class="art-class-title">Foundations of Drawing</h3>
+                        <p class="art-class-meta">Placeholder | Instructor Name | 2024</p>
+                        <p class="art-class-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut magna massa.
+                        </p>
+                    </div>
+                    <div class="art-work-grid">
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Gesture study - charcoal (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Gesture study placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Value sphere - graphite (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Value sphere placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Still life - charcoal (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Still life placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="art-class">
+                    <div class="art-class-header">
+                        <h3 class="art-class-title">Watercolor Botanicals</h3>
+                        <p class="art-class-meta">Placeholder | Instructor Name | 2023</p>
+                        <p class="art-class-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut magna massa.
+                        </p>
+                    </div>
+                    <div class="art-work-grid">
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Fern study - watercolor (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Fern study placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Spring bloom - watercolor (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Spring bloom placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Garden textures - watercolor (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Garden textures placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="art-class">
+                    <div class="art-class-header">
+                        <h3 class="art-class-title">Colored Pencil</h3>
+                        <p class="art-class-meta">Placeholder | Instructor Name | 2022</p>
+                        <p class="art-class-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ut magna massa.
+                        </p>
+                    </div>
+                    <div class="art-work-grid">
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Portrait study - mixed media (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Portrait study placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Profile sketch - mixed media (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Profile sketch placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                        <article class="art-work-card">
+                            <button class="art-work-media" type="button" data-lightbox-src="/static/images/placeholder-art.svg" data-lightbox-caption="Studio portrait - mixed media (placeholder)">
+                                <img src="/static/images/art/placeholder-art.svg" alt="Studio portrait placeholder">
+                                <span class="art-work-overlay">View larger</span>
+                            </button>
+                            <h4 class="art-work-title">Title</h4>
+                            <p class="art-work-text">Lorem ipsum dolor sit amet.</p>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" type="button" data-lightbox-close>&times;</button>
+            <img id="lightbox-img" src="" alt="Enlarged view">
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/lightbox.js') }}"></script>
+{% endblock %}
