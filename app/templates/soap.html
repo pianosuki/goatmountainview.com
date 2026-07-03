@@ -83,6 +83,7 @@
                         <h3 class="h3-title">{{ soap.name }}</h3>
                         <p><strong>INGREDIENTS:</strong> {{ soap.ingredients }}</p>
                         {% if soap.scent_family %}<p><strong>SCENT FAMILY:</strong> {{ soap.scent_family }}</p>{% endif %}
+                        {% if soap.fragrance_notes %}<p><strong>FRAGRANCE NOTES:</strong> {{ soap.fragrance_notes }}</p>{% endif %}
                         <p><strong>Net wt.</strong> approx. {{ soap.weight }} ounces</p>
                     </div>
                 {% endfor %}
