@@ -1,6 +1,6 @@
 """
-Migration script to add scent_family column to soaps table.
-Run this on production to add the new column.
+Migration script to add scent_family and fragrance_notes columns to soaps table.
+Run this on production to add the new columns.
 """
 import sqlite3
 from contextlib import contextmanager
@@ -20,7 +20,7 @@ def get_db_connection(db_path: str):
 
 def migrate(db_path: str = "instance/storage.db") -> None:
     """
-    Add scent_family column to soaps table.
+    Add scent_family and fragrance_notes columns to soaps table.
 
     Args:
         db_path: Path to the SQLite database file
@@ -38,20 +38,32 @@ def migrate(db_path: str = "instance/storage.db") -> None:
             print("Error: 'soaps' table does not exist. Nothing to migrate.")
             return
 
-        # Check if column already exists
+        # Check which columns already exist
         cursor.execute("PRAGMA table_info(soaps)")
         columns = [row['name'] for row in cursor.fetchall()]
 
-        if 'scent_family' in columns:
-            print("Column 'scent_family' already exists. Nothing to do.")
+        migrated = []
+
+        if 'scent_family' not in columns:
+            print("Adding 'scent_family' column to 'soaps' table...")
+            cursor.execute(
+                "ALTER TABLE soaps ADD COLUMN scent_family VARCHAR(100)"
+            )
+            migrated.append("scent_family")
+
+        if 'fragrance_notes' not in columns:
+            print("Adding 'fragrance_notes' column to 'soaps' table...")
+            cursor.execute(
+                "ALTER TABLE soaps ADD COLUMN fragrance_notes VARCHAR(200)"
+            )
+            migrated.append("fragrance_notes")
+
+        if not migrated:
+            print("All columns already exist. Nothing to do.")
             return
 
-        print("Adding 'scent_family' column to 'soaps' table...")
-        cursor.execute(
-            "ALTER TABLE soaps ADD COLUMN scent_family VARCHAR(200)"
-        )
         conn.commit()
-        print("Migration complete!")
+        print(f"Migration complete! Added: {', '.join(migrated)}")
 
 
 if __name__ == "__main__":
@@ -61,7 +73,7 @@ if __name__ == "__main__":
 
     print("=" * 50)
     print("Soaps Scent Family Migration")
-    print("Add scent_family column to soaps table")
+    print("Add scent_family + fragrance_notes columns")
     print("=" * 50)
     print()
 
