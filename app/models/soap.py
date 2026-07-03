@@ -15,6 +15,7 @@ class Soap(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False, unique=True)
     ingredients = db.Column(db.Text(), nullable=False)
+    scent_family = db.Column(db.String(100), nullable=True)
     weight = db.Column(db.Float(), nullable=False)
     image_id = db.Column(db.Integer, db.ForeignKey("images.id"), default=1)
     
