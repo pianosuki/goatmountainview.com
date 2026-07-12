@@ -10,6 +10,8 @@ USER_FIELDS = {
     "soaps": [
         {"name": "name", "type": "text"},
         {"name": "ingredients", "type": "text"},
+        {"name": "scent_family", "type": "text"},
+        {"name": "fragrance_notes", "type": "text"},
         {"name": "weight", "type": "number"},
         {"name": "image", "type": "image"},
     ],
@@ -63,6 +65,8 @@ DISPLAY_FIELDS = {
     "soaps": [
         {"name": "name", "label": "Soap Name", "type": "text", "required": True},
         {"name": "ingredients", "label": "Ingredients", "type": "textarea", "required": True},
+        {"name": "scent_family", "label": "Scent Family", "type": "text", "required": False},
+        {"name": "fragrance_notes", "label": "Fragrance Notes", "type": "text", "required": False},
         {"name": "weight", "label": "Weight (oz)", "type": "number", "required": True},
         {"name": "image", "label": "Photo", "type": "image", "required": False},
     ],

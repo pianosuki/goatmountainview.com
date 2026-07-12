@@ -12,120 +12,160 @@
         {
             "name": "Sea Salt",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Sea Clay, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/salty_orig.jpg"
         },
         {
             "name": "Coastal Rain",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Pumice Sand, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 3.5,
             "image_id": "soap/signature_orig.jpg"
         },
         {
             "name": "Eucalyptus and Cotton",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Sweet Almond Oil, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 3.5,
             "image_id": "soap/celestial_orig.jpg"
         },
         {
             "name": "Birchwood Oud",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Cocoa, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/sassenach_orig.jpg"
         },
         {
             "name": "White Magnolia",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Kaolin Clay, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/importance_orig.jpg"
         },
         {
             "name": "Warm Flannel",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Rhassoul Clay, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/dictionary_orig.jpg"
         },
         {
             "name": "Juniper Sage",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/narnia_orig.jpg"
         },
         {
             "name": "Coconut Citrus Strawberry",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/chick-lit_orig.jpg"
         },
         {
             "name": "Oatmeal, Milk, & Honey",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Colloidal Oatmeal, Cocoa, Cinnamon, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/tea_orig.jpg"
         },
         {
             "name": "Galactic Skies",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 3.5,
             "image_id": "soap/bbf_orig.jpg"
         },
         {
             "name": "Champagne",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Rose Clay, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/chapter-5_orig.jpg"
         },
         {
             "name": "Orange & Vanilla",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/chapter-3_orig.jpg"
         },
         {
             "name": "Lavender",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Alkanet Root, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/imgp1084_orig.jpg"
         },
         {
             "name": "Unscented",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/plainjane_orig.jpg"
         },
         {
             "name": "Lavender & Lemongrass",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Essential Oil of Lemongrass, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/shirley_orig.jpg"
         },
         {
             "name": "Rustic Woods & Rum",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Kaolin Clay, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/mr-grey_orig.jpg"
         },
         {
             "name": "Cherry Almond",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Kaolin Clay, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/wash_orig.jpg"
         },
         {
             "name": "Midnight Waters",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/imgp1083_orig.jpg"
         },
         {
             "name": "Eucalyptus Spearmint",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Essential Oils of Eucalyptus and Spearmint.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 4.0,
             "image_id": "soap/badass_orig.jpg"
         },
         {
             "name": "Vanilla & Rosewood",
             "ingredients": "Goat Milk, Lard, Beef Tallow, Saponified Oils of Olive and Coconut, Sweet Almond Oil, Fragrance.",
+            "scent_family": "",
+            "fragrance_notes": "",
             "weight": 3.5,
             "image_id": "soap/imgp1086_orig.jpg"
         }
