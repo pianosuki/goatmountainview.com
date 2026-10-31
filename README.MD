@@ -1,6 +1,6 @@
 ![Logo](/app/static/images/simple_things.png)
 
-# Goat Mountain View
+# Editor Melinda / Goat Mountain View
 
 Copyediting and Nigerian Dwarf Goats in Washington.
 
@@ -22,6 +22,7 @@ Copyediting and Nigerian Dwarf Goats in Washington.
    - `SECRET_KEY=<your-secret-key>`
    - `USERNAME=<your-username>`
    - `PASSWORD=<your-password>`
+   - `SITE_URL=https://goatmountainview.com` (optional; this is the default preferred origin)
 2. Run the setup function to generate the database: `python main.py`
 
 ## Running the project
@@ -30,3 +31,5 @@ Copyediting and Nigerian Dwarf Goats in Washington.
 - `python main.py`
 2. Run with your WSGI HTTP server of choice
 - `gunicorn main:app`
+
+See [SEO maintenance and deployment](docs/seo.md) for metadata, image descriptions, and checks.
