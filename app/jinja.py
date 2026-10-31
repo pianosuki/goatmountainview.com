@@ -3,9 +3,11 @@ from datetime import datetime
 from app.models import Image, Goat
 from app.field_mappings import DISPLAY_FIELDS, DISPLAY_COLUMNS
 import app.crud as crud
+from app.image_accessibility import image_alt
 
 
 def extend_env(env):
+    env.globals["image_alt"] = image_alt
     env.filters["split_string"] = split_string
     env.globals["find_item_index"] = find_item_index
     env.globals["column_is_nullable"] = crud.column_is_nullable

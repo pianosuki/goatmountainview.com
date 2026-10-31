@@ -14,10 +14,10 @@
          <div class="content-header">
             <div class="slideshow-container">
                 <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
-                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/books/{{ file }}"></li>{% endfor %}
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/books/{{ file }}" alt="{{ image_alt('books/' ~ file, 'Scientific or medical textbook cover') }}"></li>{% endfor %}
                 </ul>
-                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
-                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/books/{{ file }}"></li>{% endfor %}
+                <ul class="slideshow-list" aria-hidden="true" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/books/{{ file }}" alt=""></li>{% endfor %}
                 </ul>
             </div>
         </div>

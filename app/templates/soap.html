@@ -10,7 +10,7 @@
     <div class="content-header">
         <div class="content-header-container">
             <div class="content-header-item">
-                <img src="/static/images/soap.jpg">
+                <img src="/static/images/soap.jpg" alt="{{ image_alt('soap.jpg') }}">
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
             <div class="nordiska-section">
                 <!-- Nordiska Logo -->
                 <div class="nordiska-logo-container">
-                    <img src="/static/images/nordiska.png" alt="Nordiska Gift Shop">
+                    <img src="/static/images/nordiska.png" alt="{{ image_alt('nordiska.png') }}">
                 </div>
 
                 <!-- Nordiska Description -->
@@ -67,11 +67,11 @@
                 <!-- Nordiska Gallery -->
                 <div class="nordiska-gallery">
                     <div class="nordiska-gallery-item" data-lightbox-src="/static/images/nordiska_sign.jpg" data-lightbox-caption="Nordiska Storefront" role="button" tabindex="0">
-                        <img src="/static/images/nordiska_sign.jpg" alt="Nordiska Storefront Sign">
+                        <img src="/static/images/nordiska_sign.jpg" alt="{{ image_alt('nordiska_sign.jpg') }}">
                         <div class="caption">Nordiska Storefront</div>
                     </div>
                     <div class="nordiska-gallery-item" data-lightbox-src="/static/images/nordiskadisplay.jfif" data-lightbox-caption="Our Soap Display at Nordiska" role="button" tabindex="0">
-                        <img src="/static/images/nordiskadisplay.jfif" alt="Nordiska Product Display">
+                        <img src="/static/images/nordiskadisplay.jfif" alt="{{ image_alt('nordiskadisplay.jfif') }}">
                         <div class="caption">Our Soap Display at Nordiska</div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
             <div class="content-grid">
                 {% for soap in soaps %}
                     <div class="content-grid-item">
-                        <img src="/static/images/uploads/{{ soap.image.path }}" class="content-image" alt="{{ soap.name }}">
+                        <img src="/static/images/uploads/{{ soap.image.path }}" class="content-image" alt="{{ image_alt('uploads/' ~ soap.image.path, soap.name ~ ' goat milk soap') }}">
                         <h3 class="h3-title">{{ soap.name }}</h3>
                         <p><strong>INGREDIENTS:</strong> {{ soap.ingredients }}</p>
                         {% if soap.scent_family %}<p><strong>SCENT FAMILY:</strong> {{ soap.scent_family }}</p>{% endif %}
@@ -101,7 +101,7 @@
     <div id="lightbox" class="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-close" type="button" data-lightbox-close>&times;</button>
-            <img id="lightbox-img" src="" alt="Enlarged view">
+            <img id="lightbox-img" src="" alt="">
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
     </div>

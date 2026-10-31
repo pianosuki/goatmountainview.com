@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const lightboxCaption = document.getElementById('lightbox-caption');
     const closeButton = lightbox.querySelector('[data-lightbox-close]');
 
-    function openLightbox(imageSrc, caption) {
+    function openLightbox(imageSrc, caption, altText) {
         if (!imageSrc || !lightboxImg) {
             return;
         }
 
         lightboxImg.src = imageSrc;
-        lightboxImg.alt = caption || 'Expanded artwork';
+        lightboxImg.alt = altText || caption || 'Expanded image';
 
         if (lightboxCaption) {
             lightboxCaption.textContent = caption || '';
@@ -31,16 +31,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const triggers = document.querySelectorAll('[data-lightbox-src]');
     triggers.forEach(function(trigger) {
+        function openImage() {
+            const thumbnail = trigger.querySelector('img');
+            openLightbox(trigger.dataset.lightboxSrc, trigger.dataset.lightboxCaption,
+                thumbnail ? thumbnail.alt : '');
+        }
+
         trigger.addEventListener('click', function(event) {
             event.preventDefault();
-            openLightbox(trigger.dataset.lightboxSrc, trigger.dataset.lightboxCaption);
+            openImage();
         });
 
         if (trigger.tagName !== 'BUTTON') {
             trigger.addEventListener('keydown', function(event) {
                 if (event.key === 'Enter' || event.key === ' ') {
                     event.preventDefault();
-                    openLightbox(trigger.dataset.lightboxSrc, trigger.dataset.lightboxCaption);
+                    openImage();
                 }
             });
         }

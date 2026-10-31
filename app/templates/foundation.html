@@ -14,10 +14,10 @@
         <div class="content-header">
             <div class="slideshow-container">
                 <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
-                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}" alt="{{ image_alt(file, 'Nigerian Dwarf goat') }}"></li>{% endfor %}
                 </ul>
-                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
-                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                <ul class="slideshow-list" aria-hidden="true" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}" alt=""></li>{% endfor %}
                 </ul>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 {% for goat in foundation %}
                     <div class="content-section-row">
                         <div class="content-image-container">
-                            <img src="/static/images/uploads/{{ goat.image.path }}" class="content-image">
+                            <img src="/static/images/uploads/{{ goat.image.path }}" class="content-image" alt="{{ image_alt('uploads/' ~ goat.image.path, goat.goat.name ~ ', a Nigerian Dwarf goat') }}">
                         </div>
                         <div class="paragraph-container">
                             {% if goat.link %} <p><a href="{{ goat.link }}" target="_blank">{{ goat.goat.name }}</a></p> {% else %} <p class="null-link">{{ goat.goat.name }}</p> {% endif %}

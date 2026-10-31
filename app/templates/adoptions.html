@@ -14,10 +14,10 @@
         <div class="content-header">
             <div class="slideshow-container">
                 <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
-                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}" alt="{{ image_alt(file, 'Nigerian Dwarf goat') }}"></li>{% endfor %}
                 </ul>
-                <ul class="slideshow-list" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
-                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}"></li>{% endfor %}
+                <ul class="slideshow-list" aria-hidden="true" style="animation-duration: {{ (1 / slideshow_speed_constant * (slideshow_width + slideshow_images|length * 32))|round }}s;">
+                    {% for file in slideshow_images %}<li class="slideshow-list-item"><img src="/static/images/{{ file }}" alt=""></li>{% endfor %}
                 </ul>
             </div>
         </div>
@@ -63,17 +63,17 @@
         <div class="content-section">
             <div class="content-section-row">
                 <div class="paragraph-container" style="align-items: center;">
-                    <img src="/static/images/ags.png" class="content-image" style="margin-bottom: 20px;">
+                    <img src="/static/images/ags.png" class="content-image" style="margin-bottom: 20px;" alt="{{ image_alt('ags.png') }}">
                     
                 </div>
                 <div class="paragraph-container" style="align-items: center;">
-                    <img src="/static/images/adga.png" class="content-image" style="margin-bottom: 20px;">
+                    <img src="/static/images/adga.png" class="content-image" style="margin-bottom: 20px;" alt="{{ image_alt('adga.png') }}">
                     <p>
                         Member of ADGA since 2007
                     </p>
                 </div>
                 <div class="paragraph-container" style="align-items: center;">
-                    <img src="/static/images/andda.jpg" class="content-image" style="margin-bottom: 20px;">
+                    <img src="/static/images/andda.jpg" class="content-image" style="margin-bottom: 20px;" alt="{{ image_alt('andda.jpg') }}">
                 </div>
             </div>
             <div class="content-section-row page-nav-row">
