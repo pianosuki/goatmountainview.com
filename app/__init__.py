@@ -18,3 +18,6 @@ from app import routes
 # Jinja extensions
 from app.jinja import extend_env
 extend_env(app.jinja_env)
+
+# Public search metadata, sitemap, and indexing rules.
+from app import seo
