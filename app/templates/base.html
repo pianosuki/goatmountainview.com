@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ seo.title if seo else 'Editor Melinda' }}{% endblock %}</title>
     {% if seo %}
     <meta name="description" content="{{ seo.description }}">
@@ -28,6 +29,7 @@
     {% endblock %}
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             <div class="flash-messages">
@@ -44,7 +46,7 @@
         <div class="logo">
             <a class="site-name" href="{{ url_for('index') }}">Editor Melinda</a>
         </div>
-        <nav class="nav-bar">
+        <nav class="nav-bar" aria-label="Main navigation">
             <ul class="nav-list">
                 <li class="nav-item">
                     <a href="/" id="copyediting">COPYEDITING</a>
@@ -86,11 +88,11 @@
         </nav>
     </header>
 
-    <main class="main">
+    <main class="main" id="main-content" tabindex="-1">
         {% block content %}{% endblock %}
         <div class="content-body content-section" style="padding-top: 0;">
             <span class="content-section-spacer"></span>
-            <img src="/static/images/simple_things.png">
+            <img src="/static/images/simple_things.png" width="237" height="215" loading="lazy">
             <h3>Thank you for visiting!</h3>
         </div>
     </main>
